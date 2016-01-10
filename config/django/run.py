@@ -1,7 +1,5 @@
 import signal
 import time
-import os
-
 import click
 import psycopg2
 
@@ -20,21 +18,17 @@ def waitfordb(stopper):
     intervals = 10 * [5] + 100 * [10]
 
     for i in intervals:
-        click.echo('checking semafor ...')
-        if os.path.isfile(PG_SEMAFOR):
-            click.echo('checking connection ...')
-            try:
-                psycopg2.connect(host='postgres',
-                                 port=5432,
-                                 database="postgres",
-                                 user="postgres",
-                                 password=getvar('DB_PASSWORD'))
-            except:
-                click.echo('could not connect yet')
-            else:
-                return
+        click.echo('checking connection ...')
+        try:
+            psycopg2.connect(host='postgres',
+                             port=5432,
+                             database="postgres",
+                             user="postgres",
+                             password=getvar('DB_PASSWORD'))
+        except:
+            click.echo('could not connect yet')
         else:
-            click.echo('no semafor yet')
+            return
 
         for w in range(i):
             if stopper.stopped:
