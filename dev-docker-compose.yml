@@ -34,7 +34,7 @@ django:
     volumes:
         - "./src:/src"
         - "./config/django:/config"
-        - "./container_shared:/home/django/container_shared"
+        - "./container_shared:/container_shared"
     links:
         - "postgres:postgres"
     environment:
