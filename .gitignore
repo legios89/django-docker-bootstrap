@@ -1,0 +1,6 @@
+*.py[oc]
+env.txt
+__pycache__
+authorized_keys
+id_rsa
+known_hosts

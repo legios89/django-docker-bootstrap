@@ -1,0 +1,58 @@
+data:
+    hostname: data
+    image: base
+    command: start
+    volumes:
+        - "./config/data:config"
+        - /data
+    entrypoint: ['python3', '/config/run.py']
+
+
+postgres:
+    hostname: postgres
+    image: postgres
+    command: start
+    volumes_from:
+        - data
+    volumes:
+        - "./config/postgres:config"
+    entrypoint: ['python3', '/config/run.py']
+    environment:
+        PGDATA: /data/postgres
+    env_file: env.txt
+    ports:
+        - "5432:5432"
+
+
+django:
+    hostname: django
+    image: django-python3
+    entrypoint: ['python3', '/config/run.py']
+    command: start_uwsgi
+    volumes_from:
+        - data
+    volumes:
+        - "./src:src"
+        - "./config/django:config"
+    links:
+        - "postgres:postgres"
+    environment:
+        PYTHONPATH: /src/django_project
+        DJANGO_SETTINGS_MODULE: django_project.settings
+        PYTHONUNBUFFERED: true
+    env_file: env.txt
+
+
+nginx:
+    hostname: nginx
+    image: nginx
+    entrypoint: ['python3', '/config/run.py']
+    command: start
+    volumes_from:
+        - data
+    volumes:
+        - "./config/nginx:config"
+    links:
+        - "django:django"
+    ports:
+        - "80:8080"
