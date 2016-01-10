@@ -4,7 +4,7 @@ data:
     command: start
     volumes:
         - "./config/data:/config"
-        - /home/django/data
+        - /data
     entrypoint: ['python3', '/config/run.py']
 
 

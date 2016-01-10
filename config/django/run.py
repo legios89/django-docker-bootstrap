@@ -93,6 +93,10 @@ def start_runserver():
 @run.command()
 def start_uwsgi():
     """Starts the service."""
+    ensure_dir('/data/sock',
+               owner='django',
+               group='django',
+               permsission_str='777')
     start = ["uwsgi", "--ini", UWSGI_CONF]
     run_daemon(start, signal_to_send=signal.SIGQUIT, user='django',
                waitfunc=waitfordb, initfunc=init)
