@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-MAINTAINER Richard Bann "richard.bann@vertis.com"
+MAINTAINER Egyed Zoltán "zoltan.egyed@vertis.com"
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 

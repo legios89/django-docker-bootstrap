@@ -1,6 +1,6 @@
-FROM vertisfinance/base
+FROM base
 
-MAINTAINER Richard Bann richard.bann@vertis.com
+MAINTAINER Egyed Zoltán "zoltan.egyed@vertis.com"
 
 RUN groupadd -g 5432 postgres && useradd -u 5432 -g 5432 -m postgres
 

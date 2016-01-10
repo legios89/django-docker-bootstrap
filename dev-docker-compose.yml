@@ -3,8 +3,8 @@ data:
     image: base
     command: start
     volumes:
-        - "./config/data:config"
-        - /data
+        - "./config/data:/config"
+        - /home/django/data
     entrypoint: ['python3', '/config/run.py']
 
 
@@ -15,7 +15,7 @@ postgres:
     volumes_from:
         - data
     volumes:
-        - "./config/postgres:config"
+        - "./config/postgres:/config"
     entrypoint: ['python3', '/config/run.py']
     environment:
         PGDATA: /data/postgres
@@ -32,9 +32,9 @@ django:
     volumes_from:
         - data
     volumes:
-        - "./src:src"
-        - "./config/django:config"
-        - "./container_shared:container_shared"
+        - "./src:/src"
+        - "./config/django:/config"
+        - "./container_shared:/home/django/container_shared"
     links:
         - "postgres:postgres"
     environment:
@@ -44,40 +44,3 @@ django:
     env_file: env.txt
     ports:
         - "8000:8000"
-
-
-# nginx:
-#     hostname: nginx
-#     image: vertisfinance/nginx
-#     entrypoint: ['python3', '/config/run.py']
-#     command: start
-#     volumes_from:
-#         - data
-#     volumes:
-#         - "./config/nginx:config"
-#     links:
-#         - "django:django"
-#     ports:
-#         - "8080:8080"
-
-
-# sshd:
-#     hostname: sshd
-#     image: vertisfinance/ssh
-#     entrypoint: ['python3', '/config/run.py']
-#     command: start_server
-#     volumes:
-#         - "./config/ssh:config"
-#         - "~/.ssh:host_ssh"
-#     ports:
-#         - "10022:10022"
-
-
-# ssh:
-#     hostname: ssh
-#     image: vertisfinance/ssh
-#     entrypoint: ['python3', '/config/run.py']
-#     command: start_client
-#     volumes:
-#         - "./config/ssh:config"
-#         - "~/.ssh:host_ssh"

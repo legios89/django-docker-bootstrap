@@ -10,12 +10,12 @@ docker build -t base "$dir/base"
 
 echo "postgres"
 echo "--------------------"
-docker build -t vertisfinance/core "$dir/postgres"
+docker build -t postgres "$dir/postgres"
 
 echo "nginx"
 echo "--------------------"
-docker build -t vertisfinance/core "$dir/nginx"
+docker build -t nginx "$dir/nginx"
 
 echo "django-python3"
 echo "--------------------"
-docker build -t vertisfinance/core "$dir/django-python3"
+docker build -t django-python3 "$dir/django-python3"
