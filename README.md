@@ -18,6 +18,7 @@ Install the docker,docker-compose - https://docs.docker.com/engine/installation/
 
 ### Environmental variables (env.txt):
 First you need to create an env.txt in the root and set the followings:
-```DJANGO_SECRET_KEY=
-   DB_PASSWORD=
+```
+DJANGO_SECRET_KEY=
+DB_PASSWORD=
 ```
