@@ -3,7 +3,7 @@ data:
     image: base
     command: start
     volumes:
-        - "./config/data:/config"
+        - "./docker/base/config:/config"
         - /data
     entrypoint: ['python3', '/config/run.py']
 
@@ -15,7 +15,7 @@ postgres:
     volumes_from:
         - data
     volumes:
-        - "./config/postgres:/config"
+        - "./docker/postgres/config:/config"
     entrypoint: ['python3', '/config/run.py']
     environment:
         PGDATA: /data/postgres
@@ -33,7 +33,7 @@ django:
         - data
     volumes:
         - "./src:/src"
-        - "./config/django:/config"
+        - "./docker/django-python3/config:/config"
         - "./container_shared:/container_shared"
     links:
         - "postgres:postgres"
