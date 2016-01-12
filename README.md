@@ -8,13 +8,16 @@ development/production environment for any project.
 Install the docker,docker-compose - https://docs.docker.com/engine/installation/
 
 ## Images
-1. base - contains every data(db, files, logs) and connected to every other image as a volume
+How to build the images: ```bash buildall.sh```
+
+1. base
+  * Contains every data(db, files, logs) and connected to every other container as a volume.
+  * If you delete the base conatainer you will lose everything (be cautious)ű
+  * Commands:
+    * shell - start a bash shell
 2. postgres - postgresql-9.4
 3. django-python3(django) - Django 1.8.4 with python3
 4. nginx
-
-### How to build the docker images
-```sh bash buildall.sh ```
 
 ### Environmental variables (env.txt):
 First you need to create an env.txt in the root and set the followings:
