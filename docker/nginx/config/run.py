@@ -1,6 +1,6 @@
 import click
 
-from runutils import runbash, run_daemon
+from runutils import runbash, run_daemon, ensure_dir
 
 
 NGINIX_CONF = '/config/nginx.conf'
@@ -8,7 +8,8 @@ NGINIX_CONF = '/config/nginx.conf'
 
 @click.group()
 def run():
-    pass
+    ensure_dir('/data/logs/nginx/', owner='nginx', group='nginx',
+               permsission_str='777')
 
 
 @run.command()

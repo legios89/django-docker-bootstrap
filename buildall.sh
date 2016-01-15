@@ -14,7 +14,7 @@ docker build -t postgres "$dir/postgres"
 
 echo "nginx"
 echo "--------------------"
-docker build -t nginx "$dir/nginx"
+docker build -t nginx 2"$dir/nginx"
 
 echo "django-python3"
 echo "--------------------"
