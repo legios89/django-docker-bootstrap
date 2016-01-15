@@ -44,6 +44,8 @@ def waitfordb(stopper):
 
 
 def init(stopper):
+    ensure_dir('/data/logs/django',
+               owner='django', group='django', permsission_str='777')
     ensure_dir('/data/static',
                owner='django', group='django', permsission_str='777')
 
