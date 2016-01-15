@@ -38,8 +38,8 @@ django:
     links:
         - "postgres:postgres"
     environment:
-        PYTHONPATH: /src/django_project
-        DJANGO_SETTINGS_MODULE: django_project.settings
+        PYTHONPATH: /src
+        DJANGO_SETTINGS_MODULE: core.settings
         PYTHONUNBUFFERED: true
     env_file: env.txt
     ports:
