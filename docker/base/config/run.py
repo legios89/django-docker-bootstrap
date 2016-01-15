@@ -1,11 +1,12 @@
 import click
 
-from runutils import runbash
+from runutils import runbash, ensure_dir
 
 
 @click.group()
 def run():
-    pass
+    ensure_dir('/data/logs/', owner='root', group='root',
+               permsission_str='777')
 
 
 @run.command()

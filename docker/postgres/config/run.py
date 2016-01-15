@@ -22,25 +22,23 @@ PGDATA = getvar('PGDATA')
 CONFIG_FILE = '/config/postgresql.conf'
 SOCKET_DIR = '/data/sock'
 BACKUP_DIR = '/data/backup'
+LOG_DIR = '/data/logs/postgres'
 SEMAFOR = '/data/sock/pg_semafor'
-
 PGDATA_PARENT = os.path.split(PGDATA)[0]
 
-
-##################################
-# UTILITY FUNCTIONS: do not edit #
-##################################
 
 start_postgres = ['postgres', '-c', 'config_file=%s' % CONFIG_FILE]
 
 
+#############
+# Functions #
+#############
+
 def psqlparams(command=None, database='postgres'):
     """Returns a list of command line arguments to run psql."""
-
     if command is None:
         return ['psql', '-d', database, '-h', SOCKET_DIR]
-    else:
-        return ['psql', '-d', database, '-h', SOCKET_DIR, '-c', command]
+    return ['psql', '-d', database, '-h', SOCKET_DIR, '-c', command]
 
 
 @contextmanager
@@ -73,53 +71,40 @@ def running_db():
 
 def _initdb():
     """Initialize the database."""
-
     run_cmd(['initdb'], user='postgres', message='Initializing the database')
 
 
 def _createuser(username, password):
     """Creates a user with the given password."""
-
     sql = "CREATE USER %s WITH PASSWORD '%s'" % (username, password)
-
     with running_db():
         run_cmd(psqlparams(sql), 'Creating user', user='postgres')
 
 
 def _setpwd(username, password):
     """Sets the password for the given user."""
-
     sql = "ALTER USER %s WITH PASSWORD '%s'" % (username, password)
-
     with running_db():
         run_cmd(psqlparams(sql), 'Setting password', user='postgres')
 
 
 def _createdb(dbname, owner):
     """Creates a database."""
-
-    sql = "CREATE DATABASE %s WITH ENCODING 'UTF8' OWNER %s"
-    sql = sql % (dbname, owner)
-
+    sql = "CREATE DATABASE %s WITH ENCODING 'UTF8' OWNER %s" % (dbname, owner)
     with running_db():
         run_cmd(psqlparams(sql), 'Creating database', user='postgres')
 
 
 def _createschema(schemaname, dbname, owner):
     """Creates a database."""
-
-    sql = "CREATE SCHEMA %s AUTHORIZATION %s"
-    sql = sql % (schemaname, owner)
-
+    sql = "CREATE SCHEMA %s AUTHORIZATION %s" % (schemaname, owner)
     with running_db():
-        run_cmd(psqlparams(sql, database=dbname),
-                'Creating schema',
+        run_cmd(psqlparams(sql, database=dbname), 'Creating schema',
                 user='postgres')
 
 
 def _backup(backupname, user, database):
     """Backs up the database with pg_dump."""
-
     # We have some restrictions on the backupname
     if re.match('[a-z0-9_-]+$', backupname) is None:
         click.secho('Invalid backupname.', fg='red')
@@ -132,7 +117,6 @@ def _backup(backupname, user, database):
         sys.exit(1)
 
     params = ['pg_dump', '-h', SOCKET_DIR, '-O', '-x', '-U', user, database]
-
     with open(filename, 'w') as f, running_db():
         ret = subprocess.call(params, stdout=f, preexec_fn=setuser('postgres'))
 
@@ -217,16 +201,18 @@ def init(stopper=None):
                owner='root', group='root', permsission_str='777')
     ensure_dir(BACKUP_DIR,
                owner='postgres', group='postgres', permsission_str='700')
+    ensure_dir(LOG_DIR,
+               owner='postgres', group='postgres', permsission_str='700')
 
     if not os.path.isdir(PGDATA):
         _initdb()
         _setpwd('postgres', getvar('DB_PASSWORD'))
 
-
 ######################################################################
 # COMMANDS                                                           #
 # Add your own if needed, remove or comment out what is unnecessary. #
 ######################################################################
+
 
 @click.group()
 def run():

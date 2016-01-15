@@ -51,21 +51,6 @@ def init(stopper):
         run_cmd(['django-admin', 'migrate'], user='django')
         run_cmd(['django-admin', 'collectstatic', '--noinput'], user='django')
 
-    # This is mainly for demonstartive purposes, but can be handy in
-    # development
-    if stopper.stopped:
-        return
-
-    import django
-    django.setup()
-    from django.contrib.auth.models import User
-
-    try:
-        User._default_manager.create_superuser(
-            'admin', 'admin@mycompany.com', 'admin')
-    except:
-        click.echo('Superuser exists')
-
 
 ######################################################################
 # COMMANDS                                                           #
