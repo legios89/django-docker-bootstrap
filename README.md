@@ -5,9 +5,9 @@ The main idea behind this project to create an easily configurable and easy to u
 development/production environment for any project.
 
 ## Installation
-Install the docker,docker-compose - https://docs.docker.com/engine/installation/
-Build the images: ```bash buildall.sh```
-Start the project: ```docker-compose up ```
+* Install the docker,docker-compose - https://docs.docker.com/engine/installation/
+* Build the images: ```bash buildall.sh```
+* Start the project: ```docker-compose up ```
 
 ## Images
 1. base
