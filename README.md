@@ -8,6 +8,9 @@ development/production environment for any project.
 * Install the docker,docker-compose - https://docs.docker.com/engine/installation/
 * Build the images: ```bash buildall.sh```
 * Start the project: ```docker-compose up ```
+* If you want to run the project in dev mode you need to set the following environment variable:         
+    * ```COMPOSE_FILE="dev-docker-compose.yml"```
+    * https://docs.docker.com/compose/reference/overview/#compose-file
 
 ## Images
 1. base
@@ -34,4 +37,5 @@ First you need to create an env.txt in the root and set the followings:
 ```
 DJANGO_SECRET_KEY=
 DB_PASSWORD=
+DEBUG=
 ```
