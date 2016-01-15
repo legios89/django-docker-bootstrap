@@ -22,7 +22,9 @@ Start the project: ```docker-compose up ```
 3. django-python3
  * The projects can be found under the /src/ directory
  * Installed apps:
-   * Django: 1.9.1, uWSGI: 2.0.12, psycopg2: 2.6.1
+    * Django: 1.9.1
+    * uWSGI: 2.0.12
+    * psycopg2: 2.6.1
  * Commands:
    * shell -start a bash shell
 4. nginx
