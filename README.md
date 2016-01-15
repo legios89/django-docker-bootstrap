@@ -37,4 +37,5 @@ First you need to create an env.txt in the root and set the followings:
 ```
 DJANGO_SECRET_KEY=
 DB_PASSWORD=
+DEBUG=
 ```
