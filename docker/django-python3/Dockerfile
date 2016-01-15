@@ -17,15 +17,7 @@ RUN set -x \
            build-essential \
            python3-dev \
     && pip3 install \
-           uwsgi==2.0.11.1 \
-           django==1.8.4. \
+           uwsgi==2.0.12 \
+           django==1.9.1. \
            psycopg2==2.6.1 \
-    && DEBIAN_FRONTEND=noninteractive \
-       apt-get purge -y \
-           python3-pip \
-           libpq-dev \
-           build-essential \
-           python3-dev \
-    && DEBIAN_FRONTEND=noninteractive apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
