@@ -2,6 +2,7 @@ data:
     hostname: data
     image: base
     command: start
+    container_name: data-container
     volumes:
         - "./container_shared:/container_shared"
         - "./docker/base/config:/config"

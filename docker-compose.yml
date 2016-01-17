@@ -3,7 +3,7 @@ proxy:
   image: base
   command: start
   volumes_from:
-      - djangodockerbootstrap_data_1
+      - data-container
   entrypoint: ['python3', '/config/run.py']
 
 postgres:
