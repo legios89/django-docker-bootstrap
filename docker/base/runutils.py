@@ -1,12 +1,9 @@
 # coding: utf-8
-
 import os
 import sys
 import subprocess
 import signal
 import pwd
-import time
-
 import click
 
 
@@ -55,7 +52,7 @@ def run_cmd(args, message=None, input=None, user=None):
         except subprocess.CalledProcessError as e:
             if message:
                 click.secho('✘', fg='red')
-            raise Exception(e.output) from None
+            raise Exception(e.output)
         else:
             if message:
                 click.secho('✔', fg='green')
@@ -164,10 +161,3 @@ def id(username):
 
 def runbash(user):
     subprocess.call(['bash'], preexec_fn=setuser(user))
-
-
-def sleep(stop_object):
-    while True:
-        if stop_object.stopped:
-            break
-        time.sleep(1)

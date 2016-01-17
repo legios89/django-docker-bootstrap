@@ -34,7 +34,7 @@ start_postgres = ['postgres', '-c', 'config_file=%s' % CONFIG_FILE]
 # Functions #
 #############
 
-def psqlparams(command=None, database='postgres'):
+def psqlparams(command=None, database='django'):
     """Returns a list of command line arguments to run psql."""
     if command is None:
         return ['psql', '-d', database, '-h', SOCKET_DIR]
@@ -72,6 +72,7 @@ def running_db():
 def _initdb():
     """Initialize the database."""
     run_cmd(['initdb'], user='postgres', message='Initializing the database')
+    _createdb('django', 'postgres')
 
 
 def _createuser(username, password):
@@ -92,7 +93,8 @@ def _createdb(dbname, owner):
     """Creates a database."""
     sql = "CREATE DATABASE %s WITH ENCODING 'UTF8' OWNER %s" % (dbname, owner)
     with running_db():
-        run_cmd(psqlparams(sql), 'Creating database', user='postgres')
+        run_cmd(psqlparams(sql, database='postgres'), 'Creating database',
+                user='postgres')
 
 
 def _createschema(schemaname, dbname, owner):
@@ -103,7 +105,7 @@ def _createschema(schemaname, dbname, owner):
                 user='postgres')
 
 
-def _backup(backupname, user, database):
+def _backup(backupname):
     """Backs up the database with pg_dump."""
     # We have some restrictions on the backupname
     if re.match('[a-z0-9_-]+$', backupname) is None:
@@ -116,7 +118,8 @@ def _backup(backupname, user, database):
         click.secho('File %s exists.' % filename, fg='red')
         sys.exit(1)
 
-    params = ['pg_dump', '-h', SOCKET_DIR, '-O', '-x', '-U', user, database]
+    params = ['pg_dump', '-h', SOCKET_DIR, '-O', '-x', '-U', 'postgres',
+              'django']
     with open(filename, 'w') as f, running_db():
         ret = subprocess.call(params, stdout=f, preexec_fn=setuser('postgres'))
 
@@ -134,38 +137,18 @@ def _backup(backupname, user, database):
         sys.exit(1)
 
 
-def _restore(backupname, user, database, do_backup=True):
-    """
-    Recreatest the database from a backup file. Will drop the
-    original database.
-    Creates a backup if do_backup is True.
-    """
-
+def _restore(backupname):
     filename = os.path.join(BACKUP_DIR, backupname)
     if not os.path.isfile(filename):
         click.secho('File %s does not exist.' % filename, fg='red')
         sys.exit(1)
 
     with running_db():
-        if do_backup:
-            backupname = 'pre_restore_%s' % int(time.time())
-            _backup(backupname, user, database)
+        run_cmd(['psql', '-h', SOCKET_DIR, '-c', 'DROP DATABASE django'],
+                message='Dropping database django', user='postgres')
 
-        sql = 'DROP DATABASE %s;' % database
-
-        run_cmd(psqlparams(sql),
-                message='Dropping database %s' % database,
-                user='postgres')
-
-        sql = ("CREATE DATABASE %s "
-               "WITH OWNER %s "
-               "ENCODING 'UTF8'" % (database, user))
-        run_cmd(psqlparams(sql),
-                message='Creating database %s' % database,
-                user='postgres')
-
-        run_cmd(psqlparams() + ['-f', filename],
-                message='Restoring',
+        _createdb('django', 'postgres')
+        run_cmd(psqlparams() + ['-f', filename],  message='Restoring',
                 user='postgres')
 
 
@@ -264,20 +247,14 @@ def createschema(schemaname, dbname, owner):
 
 @run.command()
 @click.option('--backupname', prompt=True)
-@click.option('--user', prompt=True)
-@click.option('--database', prompt=True)
-@click.option('--do_backup', is_flag=True,
-              prompt='Should we make backup?', default=False)
-def restore(backupname, user, database, do_backup):
-    _restore(backupname, user, database, do_backup)
+def restore(backupname):
+    _restore(backupname)
 
 
 @run.command()
 @click.option('--backupname', prompt=True)
-@click.option('--user', prompt=True)
-@click.option('--database', prompt=True)
-def backup(backupname, user, database):
-    _backup(backupname, user, database)
+def backup(backupname):
+    _backup(backupname)
 
 
 @run.command()

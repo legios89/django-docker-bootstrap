@@ -22,7 +22,7 @@ def waitfordb(stopper):
         try:
             psycopg2.connect(host='postgres',
                              port=5432,
-                             database="postgres",
+                             database="django",
                              user="postgres",
                              password=getvar('DB_PASSWORD'))
         except:
