@@ -1,7 +1,5 @@
 FROM base
-
 MAINTAINER Egyed Zoltán "zoltan.egyed@vertis.com"
-
 RUN groupadd -g 8000 django && useradd -u 8000 -g 8000 -m django
 
 RUN set -x \

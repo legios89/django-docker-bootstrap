@@ -1,7 +1,5 @@
 FROM base
-
 MAINTAINER Egyed Zoltán "zoltan.egyed@vertis.com"
-
 RUN groupadd -g 8080 nginx && useradd -u 8080 -g 8080 -m nginx
 
 RUN set -x \

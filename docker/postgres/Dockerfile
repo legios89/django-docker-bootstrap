@@ -1,7 +1,5 @@
 FROM base
-
 MAINTAINER Egyed Zoltán "zoltan.egyed@vertis.com"
-
 RUN groupadd -g 5432 postgres && useradd -u 5432 -g 5432 -m postgres
 
 RUN set -x \

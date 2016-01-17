@@ -1,10 +1,12 @@
 # coding: utf-8
+# Core and 3th party packages
 import os
 import sys
 import subprocess
 import signal
 import pwd
 import click
+import time
 
 
 def getvar(name, default=None):
@@ -161,3 +163,18 @@ def id(username):
 
 def runbash(user):
     subprocess.call(['bash'], preexec_fn=setuser(user))
+
+
+def sleep():
+    class Stopper(object):
+        def __init__(self):
+            self.stopped = False
+
+    stopper = Stopper()
+
+    def stop_sleep(signum, frame):
+        stopper.stopped = True
+
+    signal.signal(signal.SIGTERM, stop_sleep)
+    while not stopper.stopped:
+        time.sleep(1)

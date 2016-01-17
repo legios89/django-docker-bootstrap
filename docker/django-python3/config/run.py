@@ -1,8 +1,11 @@
+# coding: utf-8
+# Core and 3th party packages
 import signal
 import time
 import click
 import psycopg2
 
+# Utils Imports
 from runutils import run_daemon, runbash, ensure_dir, getvar, run_cmd
 
 
@@ -15,7 +18,7 @@ def waitfordb(stopper):
     Wait for the database to accept connections.
     """
     tick = 0.1
-    intervals = 10 * [5] + 100 * [10]
+    intervals = 100 * [10]
 
     for i in intervals:
         click.echo('checking connection ...')

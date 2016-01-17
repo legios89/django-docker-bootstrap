@@ -15,7 +15,7 @@ development/production environment for any project.
 ## Images
 1. base
  * Contains every data(db, files, logs) and connected to every other container as a volume (/data/).
- * If you delete the base conatainer you will lose everything (be cautious)
+ * If you delete the base container you will lose everything (be cautious)
  * Commands:
    * shell - start a bash shell
 2. postgres
@@ -24,7 +24,7 @@ development/production environment for any project.
    * shell -start a bash shell
 3. django-python3
  * The projects can be found under the /src/ directory
- * Installed apps:
+ * Installed Apps:
     * Django: 1.9.1
     * uWSGI: 2.0.12
     * psycopg2: 2.6.1
@@ -33,7 +33,7 @@ development/production environment for any project.
 4. nginx
 
 ### Environmental variables (env.txt):
-First you need to create an env.txt in the root and set the followings:
+First you need to create an ```env.txt``` in the root and set the followings:
 ```
 DJANGO_SECRET_KEY=
 DB_PASSWORD=

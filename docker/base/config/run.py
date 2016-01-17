@@ -1,7 +1,9 @@
+# coding: utf-8
+# Core and 3th party packages
 import click
-import time
-import signal
-from runutils import runbash, ensure_dir
+
+# Utils Imports
+from runutils import runbash, ensure_dir, sleep
 
 
 @click.group()
@@ -18,18 +20,7 @@ def shell(user):
 
 @run.command()
 def start():
-    class Stopper(object):
-        def __init__(self):
-            self.stopped = False
-
-    stopper = Stopper()
-
-    def stop_sleep(signum, frame):
-        stopper.stopped = True
-
-    signal.signal(signal.SIGTERM, stop_sleep)
-    while not stopper.stopped:
-        time.sleep(1)
+    sleep()
 
 
 if __name__ == '__main__':
