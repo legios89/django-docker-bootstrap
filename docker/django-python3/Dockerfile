@@ -17,5 +17,4 @@ RUN set -x \
     && pip3 install \
            uwsgi==2.0.12 \
            django==1.9.1. \
-           psycopg2==2.6.1 \
-    && DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
+           psycopg2==2.6.1

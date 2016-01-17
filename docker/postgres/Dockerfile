@@ -12,9 +12,6 @@ RUN set -x \
     && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y --no-install-recommends \
            postgresql-9.4 \
-           postgresql-contrib-9.4 \
-    && DEBIAN_FRONTEND=noninteractive apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+           postgresql-contrib-9.4
 
 ENV PATH /usr/lib/postgresql/9.4/bin:$PATH

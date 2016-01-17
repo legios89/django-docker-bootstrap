@@ -7,19 +7,12 @@ RUN set -x \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y --no-install-recommends \
-           python3 \
-           ca-certificates \
+          sudo \
+          python3 \
+          ca-certificates \
     && DEBIAN_FRONTEND=noninteractive \
-       apt-get install -y --no-install-recommends \
-           python3-pip \
-    && pip3 install \
-           click \
-    && DEBIAN_FRONTEND=noninteractive \
-       apt-get purge -y \
-           python3-pip \
-    && DEBIAN_FRONTEND=noninteractive apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+       apt-get install -y --no-install-recommends python3-pip \
+    && pip3 install click
 
 COPY skel /etc/skel
 COPY skel/* /root/
