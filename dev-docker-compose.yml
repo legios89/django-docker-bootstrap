@@ -15,6 +15,9 @@ postgres:
     volumes:
         - "./docker/postgres/config:/config"
         - "./container_shared:/container_shared"
+    log_opt:
+        max-size: "5m"
+        max-file: "1"
     entrypoint: ['python3', '/config/run.py']
     environment:
         PGDATA: /data/postgres
@@ -35,6 +38,9 @@ django:
         - "./container_shared:/container_shared"
     links:
         - "postgres:postgres"
+    log_opt:
+        max-size: "5m"
+        max-file: "1"
     environment:
         PYTHONPATH: /src
         DJANGO_SETTINGS_MODULE: core.settings
