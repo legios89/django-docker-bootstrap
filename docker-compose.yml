@@ -3,6 +3,7 @@ data:
     image: base
     command: start
     volumes:
+        - "./container_shared:/container_shared"
         - "./docker/base/config:/config"
         - /data
     entrypoint: ['python3', '/config/run.py']
@@ -15,6 +16,7 @@ postgres:
     volumes_from:
         - data
     volumes:
+        - "./container_shared:/container_shared"
         - "./docker/postgres/config:/config"
     entrypoint: ['python3', '/config/run.py']
     environment:
@@ -52,6 +54,7 @@ nginx:
     volumes_from:
         - data
     volumes:
+        - "./container_shared:/container_shared"
         - "./docker/nginx/config:/config"
     links:
         - "django:django"
