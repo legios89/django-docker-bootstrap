@@ -1,20 +1,17 @@
-data:
-    hostname: data
-    image: base
-    command: start
-    volumes:
-        - "./container_shared:/container_shared"
-        - "./docker/base/config:/config"
-        - /data
-    entrypoint: ['python3', '/config/run.py']
-
+proxy:
+  hostname: proxy
+  image: base
+  command: start
+  volumes_from:
+      - djangodockerbootstrap_data_1
+  entrypoint: ['python3', '/config/run.py']
 
 postgres:
     hostname: postgres
     image: postgres
     command: start
     volumes_from:
-        - data
+        - proxy
     volumes:
         - "./container_shared:/container_shared"
         - "./docker/postgres/config:/config"
@@ -25,14 +22,13 @@ postgres:
     ports:
         - "5433:5432"
 
-
 django:
     hostname: django
     image: django-python3
     entrypoint: ['python3', '/config/run.py']
     command: start_uwsgi
     volumes_from:
-        - data
+        - proxy
     volumes:
         - "./src:/src"
         - "./docker/django-python3/config:/config"
@@ -45,14 +41,13 @@ django:
         PYTHONUNBUFFERED: true
     env_file: env.txt
 
-
 nginx:
     hostname: nginx
     image: nginx
     entrypoint: ['python3', '/config/run.py']
     command: start
     volumes_from:
-        - data
+        - proxy
     volumes:
         - "./container_shared:/container_shared"
         - "./docker/nginx/config:/config"

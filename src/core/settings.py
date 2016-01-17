@@ -18,7 +18,7 @@ def getvar(name, default=None):
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = getvar('DJANGO_SECRET_KEY')
-DEBUG = getvar('DEBUG') == 'False'
+DEBUG = getvar('DEBUG') == 'True'
 
 ALLOWED_HOSTS = []
 if getvar('ALLOWED_HOSTS'):
