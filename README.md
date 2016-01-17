@@ -13,6 +13,9 @@ development/production environment for any project.
     * https://docs.docker.com/compose/reference/overview/#compose-file
 
 ## Images
+Every image has a container_shared directory linked as a volume, so if you want to put something inside the container, or
+you want to get something from inside the containers like a backup file you just need to copy everything to this directory.
+
 1. base
  * Contains every data(db, files, logs) and connected to every other container as a volume (/data/).
  * If you delete the base container you will lose everything (be cautious)
@@ -22,8 +25,8 @@ development/production environment for any project.
  * postgresql-9.4
  * Commands:
     * shell - start a bash shell
-    * backup - create a backup from the django db
-    * restore - restore the db from a backup
+    * backup - create a backup from the db (location: /data/backup/<backup_name>)
+    * restore - restore the db from a backup file (location: /data/backup/<backup_name>)
 3. django-python3
  * The projects can be found under the /src/ directory
  * Installed Apps:
@@ -37,7 +40,7 @@ development/production environment for any project.
    * shell -start a bash shell
 
 ### Environmental variables (env.txt):
-First you need to create an ```env.txt``` in the root and set the followings:
+First you need to create a ```env.txt``` in the root and set the followings:
 ```
 DJANGO_SECRET_KEY=
 DB_PASSWORD=
