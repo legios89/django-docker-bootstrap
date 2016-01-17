@@ -50,4 +50,5 @@ First you need to create a ```env.txt``` in the root and set the followings:
 DJANGO_SECRET_KEY=
 DB_PASSWORD=
 DEBUG=
+ALLOWED_HOSTS=
 ```
