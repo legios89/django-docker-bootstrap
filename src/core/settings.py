@@ -6,23 +6,21 @@ from django.utils.translation import ugettext_lazy as _
 
 def getvar(name, default=None):
     """
-    Returns the value of an environment variable.
-    If the variable is not present and no default is given,
-    raises an exception.
+    Returns the value of an environment variable. If the variable is not
+    present and no default is given, raises an exception.
     """
-    ret = os.environ.get(name, default)
-    if not ret:
+    ret = os.environ.get(name)
+    if not ret and default is None:
         raise Exception('Environment variable %s not set' % name)
+    elif default is not None:
+        return default
     return ret
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = getvar('DJANGO_SECRET_KEY')
-DEBUG = getvar('DEBUG') == 'True'
-
-ALLOWED_HOSTS = []
-if getvar('ALLOWED_HOSTS'):
-    ALLOWED_HOSTS = getvar('ALLOWED_HOSTS').split(',')
+DEBUG = getvar('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = getvar('ALLOWED_HOSTS', '').split(',')
 
 # Application definition
 INSTALLED_APPS = (
