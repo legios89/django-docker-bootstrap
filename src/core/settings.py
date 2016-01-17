@@ -1,4 +1,7 @@
+# coding: utf-8
+# Core and 3th party packages
 import os
+from django.utils.translation import ugettext_lazy as _
 
 
 def getvar(name, default=None):
@@ -18,7 +21,6 @@ SECRET_KEY = getvar('DJANGO_SECRET_KEY')
 DEBUG = getvar('DEBUG') == 'False'
 ALLOWED_HOSTS = []
 
-
 # Application definition
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -27,11 +29,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'core'
 )
 
 MIDDLEWARE_CLASSES = (
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -72,13 +77,22 @@ DATABASES = {
     }
 }
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+LANGUAGES = [
+    ('en', _('English')),
+]
+
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = '/data/static/'
+
+# Debug toolbar visibility fix
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda x: DEBUG,
+}
 
 LOGGING = {
     'version': 1,
