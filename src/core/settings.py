@@ -19,7 +19,10 @@ def getvar(name, default=None):
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = getvar('DJANGO_SECRET_KEY')
 DEBUG = getvar('DEBUG') == 'False'
+
 ALLOWED_HOSTS = []
+if getvar('ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = getvar('ALLOWED_HOSTS').split(',')
 
 # Application definition
 INSTALLED_APPS = (
