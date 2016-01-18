@@ -21,16 +21,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = getvar('DJANGO_SECRET_KEY')
 DEBUG = getvar('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = getvar('ALLOWED_HOSTS', '').split(',')
+LOGIN_URL = '/admin/login/'
 
 # Application definition
 INSTALLED_APPS = (
+    # django core
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3th party
     'debug_toolbar',
+    'rosetta',
+    # project apps
     'core'
 )
 
