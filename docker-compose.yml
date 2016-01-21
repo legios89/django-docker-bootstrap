@@ -44,7 +44,7 @@ django:
     environment:
         PYTHONPATH: /src
         DJANGO_SETTINGS_MODULE: core.settings
-        PYTHONUNBUFFERED: true
+        PYTHONUNBUFFERED: "true"
     env_file: env.txt
 
 nginx:
