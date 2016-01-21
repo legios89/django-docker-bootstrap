@@ -4,16 +4,16 @@ import os
 from django.utils.translation import ugettext_lazy as _
 
 
-def getvar(name, default=None):
+def getvar(name, default=None, required=True):
     """
-    Returns the value of an environment variable. If the variable is not
-    present and no default is given, raises an exception.
+    Returns the value of an environment variable.
+    If the variable is not present, default will be used.
+    If required is True, only not None values will be returned,
+    will raise an exception instead of returning None.
     """
-    ret = os.environ.get(name)
-    if not ret and default is None:
-        raise Exception('Environment variable %s not set' % name)
-    elif default is not None:
-        return default
+    ret = os.environ.get(name, default)
+    if required and ret is None:
+        raise Exception('Environment variable %s is not set' % name)
     return ret
 
 
