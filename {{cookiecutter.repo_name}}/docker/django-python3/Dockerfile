@@ -19,5 +19,8 @@ RUN set -x \
            uwsgi==2.0.12 \
            django==1.9.1 \
            psycopg2==2.6.1 \
-           django-debug-toolbar==1.4 \
-           django-rosetta==0.7.8
+           django-debug-toolbar==1.4
+
+{% if cookiecutter.use_rosetta == 'True' %}
+RUN pip3 install django-rosetta==0.7.8
+{% endif %}

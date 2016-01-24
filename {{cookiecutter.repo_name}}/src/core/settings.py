@@ -34,7 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 3th party
     'debug_toolbar',
-    'rosetta',
+    {% if cookiecutter.use_rosetta == 'True' %}'rosetta',{% endif %}
     # project apps
     'core'
 )
@@ -84,9 +84,7 @@ DATABASES = {
 }
 
 LANGUAGE_CODE = 'en'
-LANGUAGES = [
-    ('en', _('English')),
-]
+LANGUAGES = [('en', _('English'))]
 
 TIME_ZONE = 'UTC'
 USE_I18N = True
