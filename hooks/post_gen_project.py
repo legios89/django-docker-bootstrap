@@ -27,9 +27,8 @@ def make_secret_key(project_directory):
 
 
 # 1. Generates and saves random secret key
-PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
-make_secret_key(PROJECT_DIRECTORY)
+PROJECT_DIR = os.path.realpath(os.path.curdir)
+make_secret_key(PROJECT_DIR)
 
 # 2. Rename the .src_gitignore file to .gitignore
-SOURCE_DIRECTORY = PROJECT_DIRECTORY + 'src/'
-os.rename(SOURCE_DIRECTORY + 'src_gitignore', SOURCE_DIRECTORY + 'gitignore')
+os.rename(PROJECT_DIR + '/.src_gitignore', PROJECT_DIR + '/.gitignore')
