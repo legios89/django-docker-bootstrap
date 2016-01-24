@@ -1,0 +1,6 @@
+*.py[oc]
+__pycache__
+
+env.txt
+container_shared/*
+!container_shared/.init

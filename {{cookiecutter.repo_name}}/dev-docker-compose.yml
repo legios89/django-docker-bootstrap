@@ -1,14 +1,14 @@
 proxy:
   hostname: proxy
-  image: base
+  image: {{cookiecutter.repo_name}}-base
   command: start
   volumes_from:
-      - data-container
+      - {{cookiecutter.repo_name}}-data
   entrypoint: ['python3', '/config/run.py']
 
 postgres:
     hostname: postgres
-    image: postgres
+    image: {{cookiecutter.repo_name}}-postgres
     command: start
     volumes_from:
         - proxy
@@ -27,7 +27,7 @@ postgres:
 
 django:
     hostname: django
-    image: django-python3
+    image: {{cookiecutter.repo_name}}-django-python3
     entrypoint: ['python3', '/config/run.py']
     command: start_runserver
     volumes_from:
