@@ -18,7 +18,7 @@ def getvar(name, default=None, required=True):
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = '{SECRET_KEY}'
+SECRET_KEY = getvar('DJANGO_SECRET_KEY')
 DEBUG = getvar('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = getvar('ALLOWED_HOSTS', '').split(',')
 LOGIN_URL = '/admin/login/'

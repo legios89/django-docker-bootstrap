@@ -13,7 +13,7 @@ def generate_secret_key():
 def make_secret_key(project_directory):
     """Generates and saves random secret key"""
     # Determine the setting_file_location
-    setting = os.path.join(project_directory, 'src/core/settings.py')
+    setting = os.path.join(project_directory, 'env.txt')
 
     with open(setting) as f:
         file_ = f.read()

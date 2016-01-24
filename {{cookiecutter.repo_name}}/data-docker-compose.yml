@@ -1,6 +1,6 @@
 data:
-    hostname: data
-    image: base
+    hostname: {{cookiecutter.repo_name}}-data
+    image: {{cookiecutter.repo_name}}-base
     command: start
     container_name: {{cookiecutter.repo_name}}-data
     volumes:
