@@ -1,8 +1,6 @@
 *.py[oc]
-env.txt
 __pycache__
-authorized_keys
-id_rsa
-known_hosts
-container_shared/*
-!container_shared/.init
+
+{{cookiecutter.repo_name}}/env.txt
+{{cookiecutter.repo_name}}/container_shared/*
+{{cookiecutter.repo_name}}/!container_shared/.init
