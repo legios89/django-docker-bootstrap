@@ -3,7 +3,7 @@ proxy:
   image: {{cookiecutter.repo_name}}-base
   command: start
   volumes_from:
-      - {{cookiecutter.repo_name}}-data
+      - {{cookiecutter.repo_name}}-data-container
   entrypoint: ['python3', '/config/run.py']
 
 postgres:
@@ -13,8 +13,8 @@ postgres:
     volumes_from:
         - proxy
     volumes:
-        - "./docker/postgres/config:/config"
         - "./container_shared:/container_shared"
+        - "./docker/postgres/config:/config"
     log_opt:
         max-size: "5m"
         max-file: "1"
@@ -29,7 +29,7 @@ django:
     hostname: {{cookiecutter.repo_name}}-django
     image: {{cookiecutter.repo_name}}-django-python3
     entrypoint: ['python3', '/config/run.py']
-    command: start_runserver
+    command: start_uwsgi
     volumes_from:
         - proxy
     volumes:
@@ -46,5 +46,18 @@ django:
         DJANGO_SETTINGS_MODULE: core.settings
         PYTHONUNBUFFERED: "true"
     env_file: env.txt
+
+nginx:
+    hostname: {{cookiecutter.repo_name}}-nginx
+    image: {{cookiecutter.repo_name}}-nginx
+    entrypoint: ['python3', '/config/run.py']
+    command: start
+    volumes_from:
+        - proxy
+    volumes:
+        - "./container_shared:/container_shared"
+        - "./docker/nginx/config:/config"
+    links:
+        - "django:django"
     ports:
-        - "8000:8000"
+        - "8000:8080"
