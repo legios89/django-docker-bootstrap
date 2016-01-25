@@ -1,7 +1,5 @@
 FROM base
 MAINTAINER Egyed Zoltán "zoltan.egyed@vertis.com"
-RUN groupadd -g 8000 django && useradd -u 8000 -g 8000 -m django
-
 RUN set -x \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
@@ -20,7 +18,10 @@ RUN set -x \
            django==1.9.1 \
            psycopg2==2.6.1 \
            django-debug-toolbar==1.4
+WORKDIR /src/
 
-{% if cookiecutter.use_rosetta == 'True' %}
-RUN pip3 install django-rosetta==0.7.8
-{% endif %}
+{% if cookiecutter.use_rosetta == 'True' -%}
+RUN pip3 install git+https://github.com/legios89/django-rosetta.git@develop
+RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
+       apt-get install -y --no-install-recommends gettext
+{%- endif %}

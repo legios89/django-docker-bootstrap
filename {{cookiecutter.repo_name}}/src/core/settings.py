@@ -34,7 +34,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 3th party
     'debug_toolbar',
-    {% if cookiecutter.use_rosetta == 'True' %}'rosetta',{% endif %}
+    {% if cookiecutter.use_rosetta == 'True' -%}
+    'rosetta',
+    {%- endif %}
     # project apps
     'core'
 )

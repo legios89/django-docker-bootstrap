@@ -39,6 +39,17 @@ def waitfordb(stopper):
             time.sleep(tick)
 
 
+{% if cookiecutter.use_rosetta == 'True' -%}
+def generate_makemessages_command():
+    from django.conf import settings
+    command = ['django-admin', 'makemessages']
+
+    for lang in settings.LANGUAGES:
+        if lang[0] != settings.LANGUAGE_CODE:
+            command.append('-l=' + lang[0])
+    return command
+{%- endif %}
+
 ################################################
 # INIT: WILL RUN BEFORE ANY COMMAND AND START  #
 # Modify it according to container needs       #
@@ -48,14 +59,21 @@ def waitfordb(stopper):
 
 def init(stopper):
     ensure_dir('/data/logs/django',
-               owner='django', group='django', permsission_str='777')
+               owner='developer', group='developer', permsission_str='777')
     ensure_dir('/data/static',
-               owner='django', group='django', permsission_str='777')
+               owner='developer', group='developer', permsission_str='777')
+    {% if cookiecutter.use_rosetta == 'True' -%}
+    ensure_dir('/src/locale',
+               owner='developer', group='developer', permsission_str='777')
+    {%- endif %}
 
     if not stopper.stopped:
-        run_cmd(['django-admin', 'migrate'], user='django')
-        run_cmd(['django-admin', 'collectstatic', '--noinput'], user='django')
-
+        run_cmd(['django-admin', 'migrate'], user='developer')
+        run_cmd(['django-admin', 'collectstatic', '--noinput'],
+                user='developer')
+        {% if cookiecutter.use_rosetta == 'True' -%}
+        run_cmd(generate_makemessages_command(), user='developer')
+        {%- endif %}
 
 ######################################################################
 # COMMANDS                                                           #
@@ -76,17 +94,17 @@ def shell(user):
 @run.command()
 def start_runserver():
     start = ['django-admin.py', 'runserver', '0.0.0.0:8000']
-    run_daemon(start, signal_to_send=signal.SIGINT, user='django',
+    run_daemon(start, signal_to_send=signal.SIGINT, user='developer',
                waitfunc=waitfordb, initfunc=init)
 
 
 @run.command()
 def start_uwsgi():
     """Starts the service."""
-    ensure_dir('/data/sock', owner='django', group='django',
+    ensure_dir('/data/sock', owner='developer', group='developer',
                permsission_str='777')
     start = ["uwsgi", "--ini", UWSGI_CONF]
-    run_daemon(start, signal_to_send=signal.SIGQUIT, user='django',
+    run_daemon(start, signal_to_send=signal.SIGQUIT, user='developer',
                waitfunc=waitfordb, initfunc=init)
 
 
