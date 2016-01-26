@@ -32,13 +32,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 3th party
+    # 3rd party
     'debug_toolbar',
+    # project apps
+    'core',
+    # 3rd party
     {% if cookiecutter.use_rosetta == 'True' -%}
     'rosetta',
     {%- endif %}
-    # project apps
-    'core'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,13 +61,16 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
             ],
         },
     },

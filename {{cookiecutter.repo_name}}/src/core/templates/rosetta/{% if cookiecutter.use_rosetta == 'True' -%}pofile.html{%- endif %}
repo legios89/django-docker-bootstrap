@@ -1,0 +1,12 @@
+{% extends "rosetta/pofile.html" %}
+{% load i18n %}
+
+{% block header %}
+  <div id="user-tools">
+    <p>
+      <span><a href="{% url 'rosetta-pick-file' %}">
+        {% trans "Pick another file" %}</a>
+      </span>
+    </p>
+  </div>
+{% endblock %}

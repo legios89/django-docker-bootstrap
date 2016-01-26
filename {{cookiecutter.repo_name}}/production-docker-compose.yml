@@ -3,7 +3,7 @@ proxy:
   image: {{cookiecutter.repo_name}}-base
   command: start
   volumes_from:
-      - {{cookiecutter.repo_name}}-data-container
+      - {{cookiecutter.repo_name}}-data
   entrypoint: ['python3', '/config/run.py']
 
 postgres:
