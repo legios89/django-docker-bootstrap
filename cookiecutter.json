@@ -2,8 +2,5 @@
     "project_name": "project_name",
     "repo_name": "{{ cookiecutter.project_name|replace(' ', '_') }}",
     "db_password": "db_password",
-    "use_rosetta": "True",
-    "_copy_without_render": [
-      "src/core/templates/rosetta/{% if cookiecutter.use_rosetta == 'True' -%}pofile.html{%- endif %}"
-    ]
+    "use_rosetta": "True"
 }

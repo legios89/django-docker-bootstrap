@@ -32,3 +32,8 @@ make_secret_key(PROJECT_DIR)
 
 # 2. Rename the .src_gitignore file to .gitignore
 os.rename(PROJECT_DIR + '/.src_gitignore', PROJECT_DIR + '/.gitignore')
+
+{% if cookiecutter.use_rosetta != 'True' -%}
+# Remove the empty directory if we don't want to use rosetta
+os.rmdir(PROJECT_DIR + '/src/core/templates/rosetta/')
+{%- endif %}

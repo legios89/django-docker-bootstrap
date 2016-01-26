@@ -1,4 +1,4 @@
-{% extends "rosetta/pofile.html" %}
+{% raw %}{% extends "rosetta/pofile.html" %}
 {% load i18n %}
 
 {% block header %}
