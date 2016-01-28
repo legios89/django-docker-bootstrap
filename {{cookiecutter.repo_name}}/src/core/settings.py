@@ -36,8 +36,8 @@ INSTALLED_APPS = (
     'debug_toolbar',
     # project apps
     'core',
-    # 3rd party
     {% if cookiecutter.use_rosetta == 'True' -%}
+    # 3rd party
     'rosetta',
     {%- endif %}
 )
@@ -91,6 +91,9 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en'
 LANGUAGES = [('en', _('English'))]
+{% if cookiecutter.use_rosetta == 'True' -%}
+LOCALE_PATHS = ('/data/locale/',)
+{%- endif %}
 
 TIME_ZONE = 'UTC'
 USE_I18N = True
