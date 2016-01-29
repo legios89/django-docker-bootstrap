@@ -20,7 +20,7 @@ RUN set -x \
            django-debug-toolbar==1.4
 WORKDIR /src/
 
-{% if cookiecutter.use_rosetta == 'True' -%}
+{% if cookiecutter.use_translation == 'True' -%}
 RUN pip3 install git+https://github.com/legios89/django-rosetta.git@develop
 RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y --no-install-recommends gettext

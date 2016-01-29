@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     # project apps
     'core',
-    {% if cookiecutter.use_rosetta == 'True' -%}
+    {%- if cookiecutter.use_translation == 'True' %}
     # 3rd party
     'rosetta',
     {%- endif %}
@@ -45,7 +45,9 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    {% if cookiecutter.use_translation == 'True' -%}
     'django.middleware.locale.LocaleMiddleware',
+    {% endif -%}
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,8 +93,11 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en'
 LANGUAGES = [('en', _('English'))]
-{% if cookiecutter.use_rosetta == 'True' -%}
+{% if cookiecutter.use_translation == 'True' -%}
 LOCALE_PATHS = ('/data/locale/',)
+if getvar('YANDEX_TRANSLATE_KEY', required=False):
+    ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
+    YANDEX_TRANSLATE_KEY = getvar('YANDEX_TRANSLATE_KEY')
 {%- endif %}
 
 TIME_ZONE = 'UTC'

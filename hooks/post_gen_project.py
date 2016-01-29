@@ -1,5 +1,8 @@
 import os
 from random import SystemRandom
+{% if cookiecutter.use_translation != 'True' -%}
+import shutil
+{%- endif %}
 
 
 def generate_secret_key():
@@ -33,7 +36,8 @@ make_secret_key(PROJECT_DIR)
 # 2. Rename the .src_gitignore file to .gitignore
 os.rename(PROJECT_DIR + '/.src_gitignore', PROJECT_DIR + '/.gitignore')
 
-{% if cookiecutter.use_rosetta != 'True' -%}
+{% if cookiecutter.use_translation != 'True' -%}
 # Remove the empty directory if we don't want to use rosetta
-os.rmdir(PROJECT_DIR + '/src/core/templates/rosetta/')
+shutil.rmtree(PROJECT_DIR + '/src/core/templates/')
+shutil.rmtree(PROJECT_DIR + '/src/core/management/')
 {%- endif %}

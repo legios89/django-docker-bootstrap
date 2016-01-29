@@ -1,6 +1,6 @@
 {
     "project_name": "project_name",
-    "repo_name": "{{ cookiecutter.project_name|replace(' ', '_') }}",
+    "repo_name": "{{cookiecutter.project_name|replace(' ', '_')}}",
     "db_password": "db_password",
-    "use_rosetta": "True"
+    "use_translation": "True"
 }

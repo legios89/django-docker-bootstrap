@@ -39,7 +39,7 @@ def waitfordb(stopper):
             time.sleep(tick)
 
 
-{% if cookiecutter.use_rosetta == 'True' -%}
+{% if cookiecutter.use_translation == 'True' -%}
 def generate_makemessages_command():
     from django.conf import settings
     command = ['django-admin', 'makemessages']
@@ -62,7 +62,7 @@ def init(stopper):
                owner='developer', group='developer', permsission_str='777')
     ensure_dir('/data/static',
                owner='developer', group='developer', permsission_str='777')
-    {% if cookiecutter.use_rosetta == 'True' -%}
+    {% if cookiecutter.use_translation == 'True' -%}
     ensure_dir('/src/locale',
                owner='developer', group='developer', permsission_str='777')
     {%- endif %}
@@ -71,7 +71,7 @@ def init(stopper):
         run_cmd(['django-admin', 'migrate'], user='developer')
         run_cmd(['django-admin', 'collectstatic', '--noinput'],
                 user='developer')
-        {% if cookiecutter.use_rosetta == 'True' -%}
+        {% if cookiecutter.use_translation == 'True' -%}
         run_cmd(generate_makemessages_command(), user='developer')
         {%- endif %}
 
