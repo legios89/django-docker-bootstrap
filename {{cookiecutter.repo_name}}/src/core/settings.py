@@ -91,6 +91,13 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',
+    }
+}
+
 LANGUAGE_CODE = 'en'
 LANGUAGES = [('en', _('English'))]
 {% if cookiecutter.use_translation == 'True' -%}

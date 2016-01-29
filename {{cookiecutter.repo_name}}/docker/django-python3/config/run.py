@@ -71,6 +71,8 @@ def init(stopper):
         run_cmd(['django-admin', 'migrate'], user='developer')
         run_cmd(['django-admin', 'collectstatic', '--noinput'],
                 user='developer')
+        run_cmd(['django-admin', 'createcachetable', '-v', '0'],
+                user='developer')
         {% if cookiecutter.use_translation == 'True' -%}
         run_cmd(generate_makemessages_command(), user='developer')
         {%- endif %}
