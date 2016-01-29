@@ -14,7 +14,10 @@ docker build -t {{cookiecutter.repo_name}}-nginx "docker/nginx"
 
 echo "django-python3"
 echo "--------------------"
-docker build -t {{cookiecutter.repo_name}}-django-python3 "docker/django-python3"
+docker build \
+  --build-arg "CACHE_DATE=$(date)" \
+  -t {{cookiecutter.repo_name}}-django-python3 "docker/django-python3"
+
 
 echo 'Start the data container'
 echo "--------------------"
