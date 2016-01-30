@@ -14,7 +14,11 @@ RUN pip3 install \
       uwsgi==2.0.12 \
       django==1.9.1 \
       psycopg2==2.6.1 \
-      django-debug-toolbar==1.4
+      django-debug-toolbar==1.4 \
+      djangorestframework==3.3.2 \
+      markdown==2.6.5 \
+      django-filter==0.12.0 \
+      django-crispy-forms==1.6.0
 
 WORKDIR /src/
 

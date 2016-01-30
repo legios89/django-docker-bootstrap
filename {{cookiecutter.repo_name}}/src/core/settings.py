@@ -22,6 +22,7 @@ SECRET_KEY = getvar('DJANGO_SECRET_KEY')
 DEBUG = getvar('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = getvar('ALLOWED_HOSTS', '').split(',')
 LOGIN_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = '/admin/'
 
 # Application definition
 INSTALLED_APPS = (
@@ -39,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 3rd party
     'debug_toolbar',
+    'rest_framework',
     {%- if cookiecutter.use_translation == 'True' %}
     'rosetta',
     {%- endif %}

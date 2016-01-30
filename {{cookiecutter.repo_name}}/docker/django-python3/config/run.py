@@ -76,6 +76,7 @@ def init(stopper):
 
         # Create db cache
         if os.path.isfile('/data/.init') is False:
+            run_cmd(['django-admin', 'migrate'], user='developer')
             run_cmd(['django-admin', 'createcachetable', '-v', '0'],
                     user='developer')
             with open("/data/.init", "a+") as f:

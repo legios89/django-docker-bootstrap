@@ -16,6 +16,8 @@ urlpatterns = i18n_patterns(
 urlpatterns = [
 {%- endif %}
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api-auth/', include('rest_framework.urls',
+        namespace='rest_framework')),
 {%- if cookiecutter.use_translation == 'True' %}
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^publish/rosetta/', PublishRosetta.as_view(), name='publish_rosetta')
