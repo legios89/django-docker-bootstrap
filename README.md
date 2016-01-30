@@ -43,9 +43,11 @@ you want to get something from inside the containers like a backup file you just
     * uWSGI: 2.0.12
     * psycopg2: 2.6.1
     * django-debug-toolbar: 1.4
+    * django-rosetta: (fork from 0.7.8)[optional]
  * Commands:
    * shell -start a bash shell ```dc run --rm django shell```
 4. nginx
  * Commands:
    * shell -start a bash shell ```dc run --rm nginx shell```
-
+   * Installed Apps:
+      * Nginx: 1.8.1

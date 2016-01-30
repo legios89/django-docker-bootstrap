@@ -105,7 +105,7 @@ def start_uwsgi():
     """Starts the service."""
     ensure_dir('/data/sock', owner='developer', group='developer',
                permsission_str='777')
-    start = ["uwsgi", "--ini", UWSGI_CONF]
+    start = ["uwsgi", "--ini", UWSGI_CONF, '--post-buffering', '1']
     run_daemon(start, signal_to_send=signal.SIGQUIT, user='developer',
                waitfunc=waitfordb, initfunc=init)
 
