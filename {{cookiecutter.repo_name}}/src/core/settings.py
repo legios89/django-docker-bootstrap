@@ -25,6 +25,8 @@ LOGIN_URL = '/admin/login/'
 
 # Application definition
 INSTALLED_APPS = (
+    # project apps
+    'core',
     # django core
     'django.contrib.admin',
     'django.contrib.auth',
@@ -34,10 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 3rd party
     'debug_toolbar',
-    # project apps
-    'core',
     {%- if cookiecutter.use_translation == 'True' %}
-    # 3rd party
     'rosetta',
     {%- endif %}
 )
