@@ -2,5 +2,10 @@
     "project_name": "project_name",
     "repo_name": "{{cookiecutter.project_name|replace(' ', '_')}}",
     "db_password": "db_password",
-    "use_translation": "True"
+    "use_translation": "True",
+    "yandex_translate_key": "",
+    "admin_name": "",
+    "admin_email": "",
+    "email_host_user": "",
+    "email_host_password": ""
 }

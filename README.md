@@ -41,6 +41,7 @@ you want to get something from inside the containers like a backup file you just
     * uWSGI: 2.0.12
     * psycopg2: 2.6.1
     * django-debug-toolbar: 1.4
+    * djangorestframework: 3.3.2 + optional packages
     * django-rosetta: (fork from 0.7.8) [optional]
     * django-modeltranslation: 0.11rc2 [optional]
  * Commands:

@@ -142,12 +142,44 @@ LOGGING = {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
-        }
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'django_file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': '/data/logs/django/django.log',
+            'when': 'midnight',
+            'backupCount': 30,
+            'formatter': 'simple',
+        },
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
+            'handlers': ['console', 'django_file'],
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django.template': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
             'propagate': True,
         },
     }
 }
+
+ADMINS = [('{{cookiecutter.admin_name}}', '{{cookiecutter.admin_email}}'), ]
+EMAIL_SUBJECT_PREFIX = '[Django {{cookiecutter.project_name}}] '
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = getvar('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = getvar('EMAIL_HOST_PASSWORD')
+SERVER_EMAIL = getvar('EMAIL_HOST_USER')
+DEFAULT_FROM_EMAIL = getvar('EMAIL_HOST_USER')
