@@ -27,6 +27,9 @@ LOGIN_URL = '/admin/login/'
 INSTALLED_APPS = (
     # project apps
     'core',
+    {%- if cookiecutter.use_translation == 'True' %}
+    'modeltranslation',
+    {%- endif %}
     # django core
     'django.contrib.admin',
     'django.contrib.auth',

@@ -4,6 +4,8 @@ import signal
 import time
 import click
 import psycopg2
+import os
+from django.conf import settings
 
 # Utils Imports
 from runutils import run_daemon, runbash, ensure_dir, getvar, run_cmd
@@ -41,7 +43,6 @@ def waitfordb(stopper):
 
 {% if cookiecutter.use_translation == 'True' -%}
 def generate_makemessages_command():
-    from django.conf import settings
     command = ['django-admin', 'makemessages']
 
     for lang in settings.LANGUAGES:
@@ -68,11 +69,18 @@ def init(stopper):
     {%- endif %}
 
     if not stopper.stopped:
-        run_cmd(['django-admin', 'migrate'], user='developer')
-        run_cmd(['django-admin', 'collectstatic', '--noinput'],
-                user='developer')
-        run_cmd(['django-admin', 'createcachetable', '-v', '0'],
-                user='developer')
+        if settings.DEBUG is False:
+            run_cmd(['django-admin', 'collectstatic', '--noinput'],
+                    user='developer')
+            run_cmd(['django-admin', 'migrate'], user='developer')
+
+        # Create db cache
+        if os.path.isfile('/data/.init') is False:
+            run_cmd(['django-admin', 'createcachetable', '-v', '0'],
+                    user='developer')
+            with open("/data/.init", "a+") as f:
+                f.write('')
+
         {% if cookiecutter.use_translation == 'True' -%}
         run_cmd(generate_makemessages_command(), user='developer')
         {%- endif %}

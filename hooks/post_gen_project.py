@@ -1,8 +1,7 @@
+# coding: utf-8
+# Core and 3th party packages
 import os
 from random import SystemRandom
-{% if cookiecutter.use_translation != 'True' -%}
-import shutil
-{%- endif %}
 
 
 def generate_secret_key():
@@ -38,6 +37,7 @@ os.rename(PROJECT_DIR + '/.src_gitignore', PROJECT_DIR + '/.gitignore')
 
 {% if cookiecutter.use_translation != 'True' -%}
 # Remove the empty directory if we don't want to use rosetta
+import shutil
 shutil.rmtree(PROJECT_DIR + '/src/core/templates/')
 shutil.rmtree(PROJECT_DIR + '/src/core/management/')
 os.remove(PROJECT_DIR + '/src/core/views.py')

@@ -25,8 +25,6 @@ you want to get something from inside the containers like a backup file you just
 * If you want to use sudo inside the container you need to enter as a root: ```dc run --rm django shell root```
 
 ## Images
-
-
 1. base
  * Contains every data(db, files, logs) and connected to every other container as a volume (/data/).
  * If you delete the base container you will lose everything (be cautious)
@@ -43,7 +41,8 @@ you want to get something from inside the containers like a backup file you just
     * uWSGI: 2.0.12
     * psycopg2: 2.6.1
     * django-debug-toolbar: 1.4
-    * django-rosetta: (fork from 0.7.8)[optional]
+    * django-rosetta: (fork from 0.7.8) [optional]
+    * django-modeltranslation: 0.11rc2 [optional]
  * Commands:
    * shell -start a bash shell ```dc run --rm django shell```
 4. nginx
