@@ -8,7 +8,9 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
         sudo \
         python3 \
         ca-certificates \
-        python3-pip
+        python3-pip \
+        vim \
+        curl
 
 RUN pip3 install click
 

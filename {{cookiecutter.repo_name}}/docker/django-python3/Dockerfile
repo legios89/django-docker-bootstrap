@@ -1,4 +1,4 @@
-FROM base
+FROM {{cookiecutter.repo_name}}-base
 MAINTAINER Egyed Zoltán "zoltan.egyed@vertis.com"
 RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
       apt-get install -y --no-install-recommends \
