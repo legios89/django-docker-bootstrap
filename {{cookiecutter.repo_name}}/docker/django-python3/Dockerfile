@@ -18,7 +18,8 @@ RUN pip3 install \
       djangorestframework==3.3.2 \
       markdown==2.6.5 \
       django-filter==0.12.0 \
-      django-crispy-forms==1.6.0
+      django-crispy-forms==1.6.0 \
+      django-cleanup==0.4.2
 
 WORKDIR /src/
 

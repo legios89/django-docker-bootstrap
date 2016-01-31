@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # 3rd party
     'debug_toolbar',
     'rest_framework',
+    'django_cleanup',
     {%- if cookiecutter.use_translation == 'True' %}
     'rosetta',
     {%- endif %}
@@ -117,6 +118,8 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = '/data/static/'
+MEDIA_ROOT = '/data/media/'
+MEDIA_URL = '/media/'
 
 # Debug toolbar visibility fix
 DEBUG_TOOLBAR_CONFIG = {
