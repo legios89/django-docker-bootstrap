@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.conf import settings
 {% if cookiecutter.use_translation == 'True' -%}
 from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import javascript_catalog
 
 # Project imports
 from .views import PublishRosetta
@@ -19,6 +20,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls',
         namespace='rest_framework')),
 {%- if cookiecutter.use_translation == 'True' %}
+    url(r'^jsi18n/$', javascript_catalog, name='javascript-catalog'),
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^publish/rosetta/', PublishRosetta.as_view(), name='publish_rosetta')
 )

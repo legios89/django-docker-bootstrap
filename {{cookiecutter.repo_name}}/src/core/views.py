@@ -11,5 +11,5 @@ class PublishRosetta(View):
             import uwsgi
             uwsgi.reload()
         except ImportError:
-            pass  # Probably the django stated with runserver
+            pass  # Probably the django started with runserver
         return HttpResponseRedirect(reverse('rosetta-home'))

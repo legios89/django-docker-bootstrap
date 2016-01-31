@@ -42,8 +42,8 @@ def waitfordb(stopper):
 
 
 {% if cookiecutter.use_translation == 'True' -%}
-def generate_makemessages_command():
-    command = ['django-admin', 'makemessages']
+def generate_makemessages_command(domain):
+    command = ['django-admin', 'makemessages', '-d', domain]
 
     for lang in settings.LANGUAGES:
         if lang[0] != settings.LANGUAGE_CODE:
@@ -83,7 +83,8 @@ def init(stopper):
                 f.write('')
 
         {% if cookiecutter.use_translation == 'True' -%}
-        run_cmd(generate_makemessages_command(), user='developer')
+        run_cmd(generate_makemessages_command('django'), user='developer')
+        run_cmd(generate_makemessages_command('djangojs'), user='developer')
         {%- endif %}
 
 ######################################################################

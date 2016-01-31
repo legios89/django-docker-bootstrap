@@ -1,0 +1,14 @@
+{% raw %}{% extends "rosetta/languages.html" %}
+
+{% block main %}
+{{ block.super }}
+<script type="text/javascript">
+$(function () {
+  $('td.hint').each(function(key, element) {
+    var text = element.textContent.split('/')
+    text = text[text.length - 1] === 'django.po' ? 'Backend' : 'Frontend';
+    $(element).parent().find('td a').text(text);
+  });
+});
+</script>
+{% endblock %}{% endraw %}
