@@ -7,8 +7,7 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
         python3-pip \
         libpq-dev \
         build-essential \
-        python3-dev \
-        git
+        python3-dev
 
 RUN pip3 install \
       uwsgi==2.0.12 \

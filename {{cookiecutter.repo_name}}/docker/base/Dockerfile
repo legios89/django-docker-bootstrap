@@ -10,11 +10,13 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
         ca-certificates \
         python3-pip \
         vim \
-        curl
+        curl \
+        git
 
 RUN pip3 install click
 
 COPY skel /etc/skel
+RUN git clone https://github.com/legios89/molokai.git /etc/skel/.vim/
 COPY skel/* /root/
 RUN groupadd -g 1000 developer && useradd -u 1000 -g 1000 -m developer
 COPY runutils.py /usr/local/lib/python3.4/dist-packages/runutils.py
