@@ -12,14 +12,15 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
 
 RUN pip3 install \
       uwsgi==2.0.12 \
-      django==1.9.1 \
+      django==1.9.2 \
       psycopg2==2.6.1 \
       django-debug-toolbar==1.4 \
       djangorestframework==3.3.2 \
       markdown==2.6.5 \
       django-filter==0.12.0 \
       django-crispy-forms==1.6.0 \
-      django-cleanup==0.4.2
+      django-cleanup==0.4.2 \
+      django-extensions==1.6.1
 
 WORKDIR /src/
 

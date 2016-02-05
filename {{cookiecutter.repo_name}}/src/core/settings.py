@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'rest_framework',
     'django_cleanup',
+    'django_extensions',
     {%- if cookiecutter.use_translation == 'True' %}
     'rosetta',
     {%- endif %}

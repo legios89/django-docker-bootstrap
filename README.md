@@ -5,14 +5,14 @@ The main idea behind this project to create an easily configurable and easy to u
 development/production environment for any project.
 
 ## Installation
-* Docker requires a 64-bit installation regardless of your Ubuntu version.
+* Docker requires a 64-bit OS.
 * Install the docker(1.9.1),docker-compose(1.6.0) - https://docs.docker.com/engine/installation/
 * Requirements for cookiecutter: ```apt-get install python-dev```
 * Then get cookiecutter: ```pip install Markdown cookiecutter```
 * Finally enter the directory where you want to store your project and enter the following:
       * ```cookiecutter https://github.com/legios89/django-docker-bootstrap.git```
 
-# Usage
+## Usage
 * Build the images: ```bash buildall.sh```
 * Start the project: ```docker-compose up ```
 * You can set every secret variable in the  ```env.txt``` in the root
@@ -25,6 +25,7 @@ development/production environment for any project.
 you want to get something from inside the containers like a backup file you just need to copy everything to this directory.
 * Create a bash alias for for the docker-compose by edit the ```.bash_aliases``` file ```alias dc='docker-compose'```
 * If you want to use sudo inside the container you need to enter as a root: ```dc run --rm django shell root```
+* You can use vim in every container.
 
 ## Images
 1. base
@@ -32,6 +33,7 @@ you want to get something from inside the containers like a backup file you just
  * If you delete the base container you will lose everything (be cautious)
 2. postgres
  * postgresql-9.4
+ * The 5433 port is open by default if you want to connect the db with a client
  * Commands:
     * shell - start a bash shell ```dc run --rm postgres shell```
     * backup - create a backup (```/data/backup/<backup_name>```) ```dc run --rm postgres backup```
@@ -39,11 +41,13 @@ you want to get something from inside the containers like a backup file you just
 3. django-python3
  * The projects can be found under the /src/ directory
  * Installed Apps:
-    * Django: 1.9.1
+    * Django: 1.9.2
     * uWSGI: 2.0.12
     * psycopg2: 2.6.1
     * django-debug-toolbar: 1.4
     * djangorestframework: 3.3.2 + optional packages
+    * django-cleanup: 0.4.2
+    * django-extensions: 1.6.1
     * django-rosetta: (fork from 0.7.8) [optional]
     * django-modeltranslation: 0.11rc2 [optional]
  * Commands:
