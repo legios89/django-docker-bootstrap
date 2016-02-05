@@ -5,8 +5,10 @@ The main idea behind this project to create an easily configurable and easy to u
 development/production environment for any project.
 
 ## Installation
+* Docker requires a 64-bit installation regardless of your Ubuntu version.
 * Install the docker(1.9.1),docker-compose(1.6.0) - https://docs.docker.com/engine/installation/
-* Then get cookiecutter: ```pip install cookiecutter```
+* Requirements for cookiecutter: ```apt-get install python-dev```
+* Then get cookiecutter: ```pip install Markdown cookiecutter```
 * Finally enter the directory where you want to store your project and enter the following:
       * ```cookiecutter https://github.com/legios89/django-docker-bootstrap.git```
 
