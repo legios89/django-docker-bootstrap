@@ -18,9 +18,7 @@ PGDATA = getvar('PGDATA')
 CONFIG_FILE = '/config/postgresql.conf'
 SOCKET_DIR = '/data/sock'
 BACKUP_DIR = '/data/backup'
-LOG_DIR = '/data/logs/postgres'
 SEMAFOR = '/data/sock/pg_semafor'
-PGDATA_PARENT = os.path.split(PGDATA)[0]
 start_postgres = ['postgres', '-c', 'config_file=%s' % CONFIG_FILE]
 
 
@@ -134,27 +132,20 @@ def _restore(backupname):
 ################################################
 # INIT: WILL RUN BEFORE ANY COMMAND AND START  #
 ################################################
-
-
 def init(stopper=None):
-    ensure_dir(PGDATA_PARENT,
-               owner='root', group='root', permsission_str='777')
-    ensure_dir(SOCKET_DIR,
-               owner='root', group='root', permsission_str='777')
-    ensure_dir(BACKUP_DIR,
-               owner='postgres', group='postgres', permsission_str='700')
-    ensure_dir(LOG_DIR,
-               owner='postgres', group='postgres', permsission_str='700')
+    ensure_dir(os.path.split(PGDATA)[0], owner='postgres', group='postgres')
+    ensure_dir(SOCKET_DIR, owner='postgres', group='postgres')
+    ensure_dir(BACKUP_DIR, owner='postgres', group='postgres')
+    ensure_dir('/data/logs/postgres', owner='postgres', group='postgres')
 
     if not os.path.isdir(PGDATA):
         _initdb()
         _setpwd('postgres', getvar('DB_PASSWORD'))
 
+
 #############
 # COMMANDS  #
 #############
-
-
 @click.group()
 def run():
     pass

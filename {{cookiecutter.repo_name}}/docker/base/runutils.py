@@ -11,10 +11,9 @@ import time
 
 def getvar(name, default=None, required=True):
     """
-    Returns the value of an environment variable.
-    If the variable is not present, default will be used.
-    If required is True, only not None values will be returned,
-    will raise an exception instead of returning None.
+    Returns the value of an environment variable. If the variable is not
+    present, default will be used. If required is True, only not None values
+    will be returned, and it will raise an exception instead of returning None.
     """
     ret = os.environ.get(name, default)
     if required and ret is None:
@@ -22,11 +21,8 @@ def getvar(name, default=None, required=True):
     return ret
 
 
-def ensure_dir(dir, owner=None, group=None, permsission_str=None):
-    """
-    Checks the existence of the giver direcoty and
-    creates it if not present.
-    """
+def ensure_dir(dir, owner=None, group=None, permsission_str='777'):
+    """Checks the existence of the given dir and creates it if not present."""
     if not os.path.isdir(dir):
         os.makedirs(dir)
 
@@ -78,17 +74,14 @@ def run_cmd(args, message=None, input=None, user=None):
                 click.secho('✔', fg='green')
 
 
-def run_daemon(params, stdout=None, stderr=None,
-               signal_to_send=signal.SIGTERM,
-               waitfunc=None, user=None,
-               semafor=None, initfunc=None):
+def run_daemon(params, stdout=None, stderr=None, signal_to_send=signal.SIGTERM,
+               waitfunc=None, user=None, semafor=None, initfunc=None):
     """
-    Runs the command as the given user (or root by default) in daemon mode
-    and exits with it's returncode.
-    Connects the given stdout, sends the specified signal to exit.
-    If waitfunc is given it must accept an object and it should
-    return as soon as possible if object.stopped evaluates to True.
-    If semafor is provided it should be a path to a file. Before exit,
+    Runs the command as the given user (or the caller by default) in daemon
+    modeand exits with it's returncode. Connects the given stdout, sends the
+    specified signal to exit. If waitfunc is given it must accept an object
+    and it should return as soon as possible if object.stopped evaluates to
+    True. If semafor is provided it should be a path to a file. Before exit,
     this file should be deleted.
     """
     class Stopper(object):
@@ -138,9 +131,8 @@ def run_daemon(params, stdout=None, stderr=None,
 
 def setuser(username):
     """
-    Returns a function that sets process uid, gid according to
-    the given username.
-    If the user does not exist, it raises an error.
+    Returns a function that sets process uid, gid according to the given
+    username. If the user does not exist, it raises an error.
     """
     uid, gid, home = id(username)
     groups = list(set(os.getgrouplist(username, gid)))
@@ -150,14 +142,11 @@ def setuser(username):
         os.setgid(gid)
         os.setuid(uid)
         os.environ['HOME'] = home
-
     return chuser
 
 
 def id(username):
-    """
-    Returns uid, gid, home directory for the given username.
-    """
+    """Returns uid, gid, home directory for the given username."""
     userinfo = pwd.getpwnam(username)
     return userinfo.pw_uid, userinfo.pw_gid, userinfo.pw_dir
 

@@ -8,8 +8,7 @@ from runutils import runbash, ensure_dir, sleep
 
 @click.group()
 def run():
-    ensure_dir('/data/logs/', owner='root', group='root',
-               permsission_str='777')
+    ensure_dir('/data/logs/', owner='developer', group='developer')
 
 
 @run.command()

@@ -2,7 +2,10 @@
 
 echo "base"
 echo "--------------------"
-docker build -t {{cookiecutter.repo_name}}-base "docker/base"
+docker build \
+  --build-arg "DEVELOPER_UID=$(id -u)" \
+  --build-arg "DEVELOPER_GID=$(id -g)" \
+  -t {{cookiecutter.repo_name}}-base "docker/base"
 
 echo "postgres"
 echo "--------------------"

@@ -24,7 +24,7 @@ development/production environment for any project.
 * Every image has a container_shared directory linked as a volume, so if you want to put something inside the container, or
 you want to get something from inside the containers like a backup file you just need to copy everything to this directory.
 * Create a bash alias for for the docker-compose by edit the ```.bash_aliases``` file ```alias dc='docker-compose'```
-* If you want to use sudo inside the container you need to enter as a root: ```dc run --rm django shell root```
+* Enter the container as root: ```dc run --rm django shell root```
 * You can use vim in every container.
 
 ## Images

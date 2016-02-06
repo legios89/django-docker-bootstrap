@@ -11,25 +11,15 @@ from django.conf import settings
 from runutils import run_daemon, runbash, ensure_dir, getvar, run_cmd
 
 
-UWSGI_CONF = '/config/uwsgi.conf'
-PG_SEMAFOR = '/data/sock/pg_semafor'
-
-
 def waitfordb(stopper):
-    """
-    Wait for the database to accept connections.
-    """
+    """ Wait for the database to accept connections. """
     tick = 0.1
     intervals = 100 * [10]
-
     for i in intervals:
         click.echo('checking connection ...')
         try:
-            psycopg2.connect(host='postgres',
-                             port=5432,
-                             database="django",
-                             user="postgres",
-                             password=getvar('DB_PASSWORD'))
+            psycopg2.connect(host='postgres', port=5432, database="django",
+                             user="postgres", password=getvar('DB_PASSWORD'))
         except:
             click.echo('could not connect yet')
         else:
@@ -51,21 +41,13 @@ def generate_makemessages_command(domain):
     return command
 {%- endif %}
 
-################################################
+
 # INIT: WILL RUN BEFORE ANY COMMAND AND START  #
-# Modify it according to container needs       #
-# Init functions should be fast and idempotent #
-################################################
-
-
 def init(stopper):
-    ensure_dir('/data/logs/django',
-               owner='developer', group='developer', permsission_str='777')
-    ensure_dir('/data/static',
-               owner='developer', group='developer', permsission_str='777')
+    ensure_dir('/data/logs/django', owner='developer', group='developer')
+    ensure_dir('/data/static', owner='developer', group='developer')
     {% if cookiecutter.use_translation == 'True' -%}
-    ensure_dir('/src/locale',
-               owner='developer', group='developer', permsission_str='777')
+    ensure_dir('/src/locale', owner='developer', group='developer')
     {%- endif %}
 
     if not stopper.stopped:
@@ -87,10 +69,6 @@ def init(stopper):
         run_cmd(generate_makemessages_command('djangojs'), user='developer')
         {%- endif %}
 
-######################################################################
-# COMMANDS                                                           #
-# Add your own if needed, remove or comment out what is unnecessary. #
-######################################################################
 
 @click.group()
 def run():
@@ -113,9 +91,7 @@ def start_runserver():
 @run.command()
 def start_uwsgi():
     """Starts the service."""
-    ensure_dir('/data/sock', owner='developer', group='developer',
-               permsission_str='777')
-    start = ["uwsgi", "--ini", UWSGI_CONF, '--post-buffering', '1']
+    start = ["uwsgi", "--ini", '/config/uwsgi.conf', '--post-buffering', '1']
     run_daemon(start, signal_to_send=signal.SIGQUIT, user='developer',
                waitfunc=waitfordb, initfunc=init)
 
