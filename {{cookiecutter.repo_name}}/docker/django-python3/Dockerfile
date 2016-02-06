@@ -18,7 +18,8 @@ RUN pip3 install \
       django-filter==0.12.0 \
       django-crispy-forms==1.6.0 \
       django-cleanup==0.4.2 \
-      django-extensions==1.6.1
+      django-extensions==1.6.1 \
+      django-compressor==2.0
 
 WORKDIR /src/
 

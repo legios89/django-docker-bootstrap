@@ -7,9 +7,12 @@ from django.conf.urls.static import static
 {% if cookiecutter.use_translation == 'True' -%}
 from django.conf.urls.i18n import i18n_patterns
 from django.views.i18n import javascript_catalog
-
+{% endif %}
 # Project imports
-from .views import PublishRosetta
+{% if cookiecutter.use_translation == 'True' -%}
+from .views import PublishRosetta, HomePageView
+{% else -%}
+from .views import HomePageView
 {% endif %}
 
 {% if cookiecutter.use_translation == 'True' -%}
@@ -17,6 +20,7 @@ urlpatterns = i18n_patterns(
 {%- else -%}
 urlpatterns = [
 {%- endif %}
+    url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api-auth/', include('rest_framework.urls',
         namespace='rest_framework')),

@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'django_cleanup',
     'django_extensions',
+    'compressor',
     {%- if cookiecutter.use_translation == 'True' %}
     'rosetta',
     {%- endif %}
@@ -121,6 +122,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/data/static/'
 MEDIA_ROOT = '/data/media/'
 MEDIA_URL = '/media/'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder'
+)
 
 # Debug toolbar visibility fix
 DEBUG_TOOLBAR_CONFIG = {

@@ -40,5 +40,4 @@ os.rename(PROJECT_DIR + '/.src_gitignore', PROJECT_DIR + '/.gitignore')
 import shutil
 shutil.rmtree(PROJECT_DIR + '/src/core/templates/')
 shutil.rmtree(PROJECT_DIR + '/src/core/management/')
-os.remove(PROJECT_DIR + '/src/core/views.py')
 {%- endif %}

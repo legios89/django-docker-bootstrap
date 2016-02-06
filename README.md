@@ -48,6 +48,7 @@ you want to get something from inside the containers like a backup file you just
     * djangorestframework: 3.3.2 + optional packages
     * django-cleanup: 0.4.2
     * django-extensions: 1.6.1
+    * django-compressor: 2.0
     * django-rosetta: (fork from 0.7.8) [optional]
     * django-modeltranslation: 0.11rc2 [optional]
  * Commands:
