@@ -21,6 +21,7 @@ COPY runutils.py /usr/local/lib/python3.4/dist-packages/runutils.py
 
 ARG DEVELOPER_UID
 ARG DEVELOPER_GID
-RUN groupadd -g $DEVELOPER_GID developer
-RUN useradd -u $DEVELOPER_UID -g $DEVELOPER_GID -m developer
+RUN groupadd -g $DEVELOPER_GID developer && \
+      useradd -u $DEVELOPER_UID -g $DEVELOPER_GID -m developer
 RUN groupadd -g 5432 postgres && useradd -u 5432 -g 5432 -m postgres
+RUN groupadd -g 8080 nodejs && useradd -u 8080 -g 8080 -m nodejs

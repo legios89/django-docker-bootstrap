@@ -48,3 +48,19 @@ django:
     env_file: env.txt
     ports:
         - "80:8000"
+
+nodejs:
+    hostname: {{cookiecutter.repo_name}}-nodejs
+    image: {{cookiecutter.repo_name}}-nodejs
+    command: start
+    volumes_from:
+        - proxy
+    volumes:
+        - "./docker/nodejs/config:/config"
+        - "./container_shared:/container_shared"
+        - "./react:/react"
+    log_opt:
+        max-size: "5m"
+        max-file: "1"
+    entrypoint: ['python3', '/config/run.py']
+    env_file: env.txt

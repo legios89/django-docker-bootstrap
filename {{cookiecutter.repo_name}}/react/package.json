@@ -1,0 +1,19 @@
+{
+  "name": "build",
+  "version": "0.0.0",
+  "description": "",
+  "main": "router.jsx",
+  "scripts": {
+    "build": "browserify -t [ babelify --presets [ react ] ] react/router.jsx -o build/app.js"
+  },
+  "dependencies": {
+    "react": "0.14.7",
+    "react-dom": "0.14.7",
+    "babelify": "7.2.0",
+    "babel-preset-react": "6.5.0",
+    "browserify": "13.0.0",
+    "watchify": "3.7.0",
+    "react-router": "1.0.3",
+    "history": "1.17.0"
+  }
+}

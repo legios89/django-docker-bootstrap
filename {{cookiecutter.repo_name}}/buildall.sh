@@ -21,6 +21,10 @@ docker build \
   --build-arg "CACHE_DATE=$(date)" \
   -t {{cookiecutter.repo_name}}-django-python3 "docker/django-python3"
 
+echo "nodejs"
+echo "--------------------"
+docker build -t {{cookiecutter.repo_name}}-nodejs "docker/nodejs"
+
 
 echo 'Start the data container'
 echo "--------------------"
