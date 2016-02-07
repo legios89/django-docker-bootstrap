@@ -52,8 +52,8 @@ def init(stopper):
 
     if not stopper.stopped:
         if settings.DEBUG is False:
-            run_cmd(['django-admin', 'collectstatic', '--noinput'],
-                    user='developer')
+            cmd = ['django-admin', 'collectstatic', '--noinput', '-i', 'react']
+            run_cmd(cmd, user='developer')
             run_cmd(['django-admin', 'migrate'], user='developer')
 
         # Create db cache

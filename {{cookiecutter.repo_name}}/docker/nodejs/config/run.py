@@ -3,12 +3,14 @@
 import click
 
 # Utils Imports
-from runutils import runbash, run_daemon
+from runutils import runbash, run_cmd, getvar, sleep
 
 
 @click.group()
 def run():
-    pass
+    run_cmd(['npm', 'config', 'set', 'static_root', getvar('STATIC_ROOT')],
+            user='developer')
+    run_cmd(['npm', 'install'], message="npm install", user='developer')
 
 
 @run.command()
@@ -18,8 +20,15 @@ def shell(user):
 
 
 @run.command()
-def start():
-    run_daemon(['npm', 'run', 'build'], user='developer')
+def start_watchify():
+    run_cmd(['npm', 'run', 'watch'], message="npm run watch", user='developer')
+    sleep()
+
+
+@run.command()
+def start_build():
+    run_cmd(['npm', 'run', 'build'], message="npm run build", user='developer')
+    sleep()
 
 
 if __name__ == '__main__':

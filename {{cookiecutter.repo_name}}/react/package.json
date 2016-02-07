@@ -4,7 +4,8 @@
   "description": "",
   "main": "router.jsx",
   "scripts": {
-    "build": "browserify -t [ babelify --presets [ react ] ] react/router.jsx -o build/app.js"
+    "build": "browserify -t [ babelify --presets [ react ] ] components/router.jsx -o $npm_config_static_root/app.js",
+    "watch": "browserify -t [ babelify --presets [ react ] ] components/router.jsx -o /src/core/static/react/app.js"
   },
   "dependencies": {
     "react": "0.14.7",

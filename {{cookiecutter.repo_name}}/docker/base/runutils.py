@@ -7,6 +7,7 @@ import signal
 import pwd
 import click
 import time
+import traceback
 
 
 def getvar(name, default=None, required=True):
@@ -40,7 +41,7 @@ def run_cmd(args, message=None, input=None, user=None):
     If input is given, it will be passed to the subprocess.
     """
     if message:
-        click.echo(message + ' ... ')
+        click.echo(message + ' start ... ')
 
     _setuser = setuser(user) if user else None
 
@@ -50,11 +51,12 @@ def run_cmd(args, message=None, input=None, user=None):
                 args, stderr=subprocess.STDOUT, preexec_fn=_setuser)
         except subprocess.CalledProcessError as e:
             if message:
-                click.secho('✘', fg='red')
-            raise Exception(e.output)
+                click.secho(message + ' finish ✘', fg='red')
+            traceback.print_exc(e)
+            raise Exception(e)
         else:
             if message:
-                click.secho('✔', fg='green')
+                click.secho(message + ' finish ✔', fg='green')
     else:
         sp = subprocess.Popen(
             args,
@@ -67,11 +69,12 @@ def run_cmd(args, message=None, input=None, user=None):
 
         if retcode:
             if message:
-                click.secho('✘', fg='red')
+                click.secho(message + ' finish ✘', fg='red')
+            traceback.print_exc(err)
             raise Exception(err)
         else:
             if message:
-                click.secho('✔', fg='green')
+                click.secho(message + ' finish ✔', fg='green')
 
 
 def run_daemon(params, stdout=None, stderr=None, signal_to_send=signal.SIGTERM,
