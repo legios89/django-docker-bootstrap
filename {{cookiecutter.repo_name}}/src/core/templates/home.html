@@ -17,34 +17,12 @@
     {% endcompress %}
   </head>
   <body>
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">{% trans "Home" %}</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="">{% trans "Home" %}</a></li>
-                  <li>
-                    <a href="{% url "admin:index" %}">{% trans "Admin" %}</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-          <div class="inner cover">
-            <h1 class="cover-heading">{% trans "It worked!" %}</h1>
-            <p class="lead">
-              {% trans "Congratulations on your first Django-powered page." %}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="site-wrapper" id="app-place"></div>
     {% compress js %}
+      <script src="/jsi18n/"></script>
       <script src="{% static "js/jquery-1.12.0.min.js" %}"></script>
       <script src="{% static "js/bootstrap.min.js" %}"></script>
+      <script src="{% static "react/app.js" %}"></script>
     {% endcompress %}
   </body>
 </html>

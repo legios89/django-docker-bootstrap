@@ -5,7 +5,7 @@
   "main": "router.jsx",
   "scripts": {
     "build": "browserify -t [ babelify --presets [ react ] ] components/router.jsx -o $npm_config_static_root/app.js",
-    "watch": "browserify -t [ babelify --presets [ react ] ] components/router.jsx -o /src/core/static/react/app.js"
+    "watch": "watchify components/router.jsx -v -o/src/core/static/react/app.js  -t [ babelify --presets [ react ] ]"
   },
   "dependencies": {
     "react": "0.14.7",
