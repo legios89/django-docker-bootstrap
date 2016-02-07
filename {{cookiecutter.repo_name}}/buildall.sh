@@ -29,3 +29,7 @@ docker build -t {{cookiecutter.repo_name}}-nodejs "docker/nodejs"
 echo 'Start the data container'
 echo "--------------------"
 docker-compose --file data-docker-compose.yml up -d
+
+echo "Docker image cleanup"
+echo "--------------------"
+docker rmi `docker images --filter 'dangling=true' -q --no-trunc`

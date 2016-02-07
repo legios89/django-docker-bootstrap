@@ -7,7 +7,6 @@ import signal
 import pwd
 import click
 import time
-import traceback
 
 
 def getvar(name, default=None, required=True):
@@ -35,46 +34,24 @@ def ensure_dir(dir, owner=None, group=None, permsission_str='777'):
         subprocess.call(['chmod', permsission_str, dir])
 
 
-def run_cmd(args, message=None, input=None, user=None):
-    """
-    Executes a one-off command. The message will be printed on terminal.
-    If input is given, it will be passed to the subprocess.
-    """
+def run_cmd(args, message=None, user=None):
+    """Executes a one-off command. The message will be printed on terminal."""
     if message:
         click.echo(message + ' start ... ')
 
     _setuser = setuser(user) if user else None
-
-    if input is None:
-        try:
-            subprocess.check_output(
-                args, stderr=subprocess.STDOUT, preexec_fn=_setuser)
-        except subprocess.CalledProcessError as e:
-            if message:
-                click.secho(message + ' finish ✘', fg='red')
-            traceback.print_exc(e)
-            raise Exception(e)
-        else:
-            if message:
-                click.secho(message + ' finish ✔', fg='green')
+    try:
+        subprocess.check_output(
+            args, stderr=subprocess.STDOUT, preexec_fn=_setuser)
+    except subprocess.CalledProcessError as e:
+        if message:
+            click.secho(message + ' finish ✘', fg='red')
+        for line in str(e.output).split('\\n'):
+            click.secho(line, fg='red')
+        raise
     else:
-        sp = subprocess.Popen(
-            args,
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            preexec_fn=_setuser)
-        out, err = sp.communicate(input)
-        retcode = sp.wait()
-
-        if retcode:
-            if message:
-                click.secho(message + ' finish ✘', fg='red')
-            traceback.print_exc(err)
-            raise Exception(err)
-        else:
-            if message:
-                click.secho(message + ' finish ✔', fg='green')
+        if message:
+            click.secho(message + ' finish ✔', fg='green')
 
 
 def run_daemon(params, stdout=None, stderr=None, signal_to_send=signal.SIGTERM,
