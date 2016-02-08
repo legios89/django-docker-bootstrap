@@ -62,6 +62,7 @@ nginx:
     ports:
         - "80:8080"
 
+{% if cookiecutter.use_react == 'True' -%}
 nodejs:
     hostname: {{cookiecutter.repo_name}}-nodejs
     image: {{cookiecutter.repo_name}}-nodejs
@@ -77,4 +78,4 @@ nodejs:
         max-size: "5m"
         max-file: "1"
     entrypoint: ['python3', '/config/run.py']
-    env_file: env.txt
+    env_file: env.txt{% endif -%}

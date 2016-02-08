@@ -24,7 +24,7 @@ docker build \
 echo "nodejs"
 echo "--------------------"
 docker build -t {{cookiecutter.repo_name}}-nodejs "docker/nodejs"
-{% endif -%}
+{%- endif %}
 
 echo 'Start the data container'
 echo "--------------------"

@@ -11,15 +11,14 @@
     <meta name="author" content="">
     <title>{% trans "Home Page" %}</title>
     {% compress css %}
-      <!-- Bootstrap core CSS -->
       <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
       <link href="{% static "css/cover.css" %}" rel="stylesheet">
     {% endcompress %}
   </head>
-  <body>
+  <body>{% endraw %}
     {% if cookiecutter.use_react == 'True' -%}
     <div class="site-wrapper" id="app-place"></div>
-    {%- else -%}
+    {%- else -%}{% raw %}
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">
@@ -45,14 +44,14 @@
         </div>
       </div>
     </div>
-    {% endif -%}
+    {% endraw %}{% endif -%}{% raw %}
     {% compress js %}
       <script src="/jsi18n/"></script>
       <script src="{% static "js/jquery-1.12.0.min.js" %}"></script>
-      <script src="{% static "js/bootstrap.min.js" %}"></script>
+      <script src="{% static "js/bootstrap.min.js" %}"></script>{% endraw %}
       {% if cookiecutter.use_react == 'True' -%}
-      <script src="{% static "react/app.js" %}"></script>
-      {% endif -%}
+      {% raw %}<script src="{% static "react/app.js" %}"></script>{% endraw %}
+      {%- endif -%}{% raw %}
     {% endcompress %}
   </body>
 </html>
