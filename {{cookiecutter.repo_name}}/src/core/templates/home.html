@@ -45,8 +45,8 @@
       </div>
     </div>
     {% endraw %}{% endif -%}{% raw %}
+    <script src="/jsi18n/"></script>
     {% compress js %}
-      <script src="/jsi18n/"></script>
       <script src="{% static "js/jquery-1.12.0.min.js" %}"></script>
       <script src="{% static "js/bootstrap.min.js" %}"></script>{% endraw %}
       {% if cookiecutter.use_react == 'True' -%}
