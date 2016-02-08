@@ -12,7 +12,7 @@ development/production environment for any project.
 * Finally enter the directory where you want to store your project and enter the following:
       * ```cookiecutter https://github.com/legios89/django-docker-bootstrap.git```
 
-## Cookiecutter Params:
+## Cookiecutter params
 * project_name: The name of the project.
 * repo_name: The directory name(automtically generated from the project_name).
 * db_password: The postgres user password for the database.
