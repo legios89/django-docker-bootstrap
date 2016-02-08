@@ -1,5 +1,2 @@
 *.py[oc]
 __pycache__
-
-{{cookiecutter.repo_name}}/container_shared/*
-{{cookiecutter.repo_name}}/!container_shared/.init
