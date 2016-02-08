@@ -1,5 +1,4 @@
 #! /bin/bash
-
 echo "base"
 echo "--------------------"
 docker build \
@@ -21,15 +20,12 @@ docker build \
   --build-arg "CACHE_DATE=$(date)" \
   -t {{cookiecutter.repo_name}}-django-python3 "docker/django-python3"
 
+{% if cookiecutter.use_react == 'True' -%}
 echo "nodejs"
 echo "--------------------"
 docker build -t {{cookiecutter.repo_name}}-nodejs "docker/nodejs"
-
+{% endif -%}
 
 echo 'Start the data container'
 echo "--------------------"
 docker-compose --file data-docker-compose.yml up -d
-
-echo "Docker image cleanup"
-echo "--------------------"
-docker rmi `docker images --filter 'dangling=true' -q --no-trunc`

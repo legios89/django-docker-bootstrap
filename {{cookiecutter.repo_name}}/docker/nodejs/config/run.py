@@ -28,6 +28,8 @@ def start_watchify():
 
 @run.command()
 def start_build():
+    run_cmd(['npm', 'config', 'set', 'NODE_ENV', 'production'],
+            user='developer')
     run_cmd(['npm', 'run', 'build'], message="npm run build", user='developer')
     sleep()
 

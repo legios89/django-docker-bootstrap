@@ -52,7 +52,11 @@ def init(stopper):
 
     if not stopper.stopped:
         if settings.DEBUG is False:
+            {% if cookiecutter.use_react == 'True' -%}
             cmd = ['django-admin', 'collectstatic', '--noinput', '-i', 'react']
+            {%- else -%}
+            cmd = ['django-admin', 'collectstatic', '--noinput']
+            {% endif -%}
             run_cmd(cmd, user='developer')
             run_cmd(['django-admin', 'migrate'], user='developer')
 

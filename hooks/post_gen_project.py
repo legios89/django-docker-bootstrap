@@ -41,3 +41,11 @@ import shutil
 shutil.rmtree(PROJECT_DIR + '/src/core/templates/')
 shutil.rmtree(PROJECT_DIR + '/src/core/management/')
 {%- endif %}
+
+{% if cookiecutter.use_react != 'True' -%}
+# Remove the nodejs/rect files & directories
+import shutil
+shutil.rmtree(PROJECT_DIR + '/react/')
+shutil.rmtree(PROJECT_DIR + '/docker/nodejs/')
+shutil.rmtree(PROJECT_DIR + '/src/core/static/react/')
+{%- endif %}

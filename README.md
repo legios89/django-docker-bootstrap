@@ -12,6 +12,17 @@ development/production environment for any project.
 * Finally enter the directory where you want to store your project and enter the following:
       * ```cookiecutter https://github.com/legios89/django-docker-bootstrap.git```
 
+## Cookiecutter Params:
+* project_name: The name of the project.
+* repo_name: The directory name(automtically generated from the project_name).
+* db_password: The postgres user password for the database.
+* use_translation: Translation integration(Rosetta, ModelTransalation, admin integration).
+* use_react: React, NodeJS, React-Router to replace the django frontend.
+* admin_name: The name of the admin user who will receive the error messages.
+* admin_email: The email address of the admin user who will receive the error messages.
+* email_host_user: The gmail email address what the system can use to send emails.
+* email_host_password: The gmail email address password what the system can use to send emails.
+
 ## Usage
 * Build the images: ```bash buildall.sh```
 * Start the project: ```docker-compose up ```
@@ -58,3 +69,18 @@ you want to get something from inside the containers like a backup file you just
    * shell -start a bash shell ```dc run --rm nginx shell```
    * Installed Apps:
       * Nginx: 1.8.1
+5. nodejs [optional]
+ * Commands:
+   * shell -start a bash shell ```dc run --rm nodejs shell```
+   * Installed Apps:
+      * nodejs: 5.x.x
+      * npm: 3.x.x
+   * Installed Packages: [automatically installed]
+      * react: 0.14.7,
+      * react-dom: 0.14.7,
+      * babelify: 7.2.0,
+      * babel-preset-react: 6.5.0,
+      * browserify: 13.0.0,
+      * watchify: 3.7.0,
+      * react-router: 1.0.3,
+      * history: 1.17.0
