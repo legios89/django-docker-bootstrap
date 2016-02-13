@@ -3,7 +3,7 @@
   "main": "router.jsx",
   "scripts": {
     "build": "browserify -t [ babelify --presets [ react ] ] components/router.jsx -o $npm_config_static_root/react/app.js",
-    "watch": "watchify components/router.jsx -v -o/src/core/static/react/app.js  -t [ babelify --presets [ react ] ]"
+    "watch": "watchify components/router.jsx -v -o /src/core/static/react/app.js -t [ babelify --presets [ react ] ] --debug"
   },
   "dependencies": {
     "react": "0.14.7",
