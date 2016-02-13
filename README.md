@@ -37,6 +37,8 @@ you want to get something from inside the containers like a backup file you just
 * Create a bash alias for for the docker-compose by edit the ```.bash_aliases``` file ```alias dc='docker-compose'```
 * Enter the container as root: ```dc run --rm django shell root```
 * You can use vim in every container.
+* https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04
+* better prompt: https://github.com/vertisfinance/gitprompt
 
 ## Images
 1. base
@@ -67,14 +69,15 @@ you want to get something from inside the containers like a backup file you just
 4. nginx
  * Commands:
    * shell -start a bash shell ```dc run --rm nginx shell```
-   * Installed Apps:
-      * Nginx: 1.8.1
+ * Installed Apps:
+   * Nginx: 1.8.1
 5. nodejs [optional]
  * Commands:
-   * shell -start a bash shell ```dc run --rm nodejs shell```
+      * shell -start a bash shell ```dc run --rm nodejs shell```
+      * start_build -start the react build process than exit ```dc run --rm nodejs start_build```
    * Installed Apps:
-      * nodejs: 5.x.x
-      * npm: 3.x.x
+      * nodejs: 4.x.x
+      * npm: 2.x.x
    * Installed Packages: [automatically installed]
       * react: 0.14.7,
       * react-dom: 0.14.7,
