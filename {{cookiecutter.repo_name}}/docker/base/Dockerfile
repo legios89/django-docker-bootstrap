@@ -12,7 +12,7 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
         curl \
         git
 
-RUN pip3 install click
+RUN pip3 install click==6.2
 
 COPY skel /etc/skel
 RUN git clone https://github.com/legios89/molokai.git /etc/skel/.vim/
