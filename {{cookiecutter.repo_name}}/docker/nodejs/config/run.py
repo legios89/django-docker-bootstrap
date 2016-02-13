@@ -1,10 +1,9 @@
 # coding: utf-8
 # Core and 3th party packages
 import click
-import signal
 
 # Utils Imports
-from runutils import runbash, run_cmd, getvar, sleep, ensure_dir, run_daemon
+from runutils import runbash, run_cmd, getvar, ensure_dir, run_daemon
 
 
 @click.group()
@@ -24,7 +23,6 @@ def shell(user):
 @run.command()
 def start_watchify():
     run_daemon(['npm', 'run', 'watch'], user='developer')
-    sleep()
 
 
 @run.command()
@@ -32,7 +30,6 @@ def start_build():
     run_cmd(['npm', 'config', 'set', 'NODE_ENV', 'production'],
             user='developer')
     run_cmd(['npm', 'run', 'build'], message="npm run build", user='developer')
-    sleep()
 
 
 if __name__ == '__main__':
