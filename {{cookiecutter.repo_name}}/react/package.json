@@ -1,7 +1,5 @@
 {
-  "name": "build",
-  "version": "0.0.0",
-  "description": "",
+  "private": true,
   "main": "router.jsx",
   "scripts": {
     "build": "browserify -t [ babelify --presets [ react ] ] components/router.jsx -o $npm_config_static_root/react/app.js",

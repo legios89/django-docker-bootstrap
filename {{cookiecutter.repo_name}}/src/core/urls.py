@@ -9,11 +9,7 @@ from django.views.i18n import javascript_catalog
 from django.conf.urls.i18n import i18n_patterns
 {% endif %}
 # Project imports
-{% if cookiecutter.use_translation == 'True' -%}
-from .views import PublishRosetta, HomePageView
-{% else -%}
-from .views import HomePageView
-{% endif %}
+from .views import HomePageView{% if cookiecutter.use_translation == 'True' %}, PublishRosetta{% endif %}{% if cookiecutter.use_react == 'True' %}, UrlsApi{% endif %}
 
 {% if cookiecutter.use_translation == 'True' -%}
 urlpatterns = i18n_patterns(
@@ -25,6 +21,9 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls',
         namespace='rest_framework')),
     url(r'^jsi18n/$', javascript_catalog, name='javascript-catalog'),
+{%- if cookiecutter.use_react == 'True' %}
+    url(r'^api/urls/$', UrlsApi.as_view(), name='api_urls'),
+{%- endif %}
 {%- if cookiecutter.use_translation == 'True' %}
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^publish/rosetta/', PublishRosetta.as_view(), name='publish_rosetta')

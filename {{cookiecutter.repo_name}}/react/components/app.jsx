@@ -1,9 +1,22 @@
-/* global gettext */
+/* global gettext, $ */
 var React = require('react');
 
 var App = React.createClass({
   propTypes: {
-    children: React.PropTypes.any
+    children: React.PropTypes.any,
+    route: React.PropTypes.object
+  },
+
+  getInitialState: function () {
+    return {urls: {}};
+  },
+
+  componentWillMount: function () {
+    var self = this;
+    var url = {% if cookiecutter.use_translation == 'True' %}'/' + this.props.route.language + {% endif %}'/api/urls/';
+    $.get(url, function (response) {
+      self.setState({urls: response});
+    });
   },
 
   render: function () {
@@ -17,14 +30,14 @@ var App = React.createClass({
                 <ul className="nav masthead-nav">
                   <li className="active"><a href="">{gettext('Home')}</a></li>
                   <li>
-                    <a href="/admin/">{gettext('Admin')}</a>
+                    <a href={this.state.urls.admin_index}>{gettext('Admin')}</a>
                   </li>
                 </ul>
               </nav>
             </div>
           </div>
           <div className="inner cover">
-            {this.props.children}
+            {React.cloneElement(this.props.children, {urls: this.state.urls})}
           </div>
         </div>
       </div>);

@@ -17,14 +17,14 @@ var NotFoundRoute = React.createClass({
   }
 });
 
-var history = createHashHistory({
-  queryKey: false
-});
+var history = createHashHistory({queryKey: false});
+var mainContainer = document.getElementById('app-place');
+var language = mainContainer.attributes['data-language'].value;
 
 ReactDOM.render((
   <Router history={history}>
-    <Route component={App}>
+    <Route component={App} language={language}>
       <Route path="/" component={Home}/>
       <Route path="*" component={NotFoundRoute}/>
     </Route>
-  </Router>), document.getElementById('app-place'));
+  </Router>), mainContainer);

@@ -2,6 +2,10 @@
 var React = require('react');
 
 var Home = React.createClass({
+  propTypes: {
+    urls: React.PropTypes.object
+  },
+
   render: function () {
     return (
       <div>

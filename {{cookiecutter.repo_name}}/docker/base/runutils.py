@@ -54,15 +54,15 @@ def run_cmd(args, message=None, user=None):
             click.secho(message + ' finish ✔', fg='green')
 
 
-def run_daemon(params, stdout=None, stderr=None, signal_to_send=signal.SIGTERM,
-               waitfunc=None, user=None, semafor=None, initfunc=None):
+def run_daemon(params, signal_to_send=signal.SIGTERM, waitfunc=None,
+               user=None, semafor=None, initfunc=None, exit_on_finish=True):
     """
     Runs the command as the given user (or the caller by default) in daemon
-    modeand exits with it's returncode. Connects the given stdout, sends the
-    specified signal to exit. If waitfunc is given it must accept an object
-    and it should return as soon as possible if object.stopped evaluates to
-    True. If semafor is provided it should be a path to a file. Before exit,
-    this file should be deleted.
+    mode and exits with it's return code. Sends the specified signal to exit.
+    If waitfunc is given it must accept an object and it should return as soon
+    as possible if object.stopped evaluates to True. If semafor is provided it
+    should be a path to a file. Before exit, this file should be deleted.
+    If the exit_on_finish=False then the fucntion doesn't exit.
     """
     class Stopper(object):
         def __init__(self):
@@ -90,8 +90,7 @@ def run_daemon(params, stdout=None, stderr=None, signal_to_send=signal.SIGTERM,
 
     _setuser = setuser(user) if user else None
     if not stopper.stopped:
-        sp = subprocess.Popen(
-            params, stdout=stdout, stderr=stderr, preexec_fn=_setuser)
+        sp = subprocess.Popen(params, preexec_fn=_setuser)
         subprocess_wrapper.subprocess = sp
 
         if semafor:
@@ -106,7 +105,8 @@ def run_daemon(params, stdout=None, stderr=None, signal_to_send=signal.SIGTERM,
     except:
         pass
 
-    sys.exit(waitresult)
+    if exit_on_finish:
+        sys.exit(waitresult)
 
 
 def setuser(username):
