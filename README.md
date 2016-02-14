@@ -1,4 +1,5 @@
 # django-docker-bootstrap
+[![Requirements Status](https://requires.io/github/legios89/django-docker-bootstrap/requirements.svg?branch=master)](https://requires.io/github/legios89/django-docker-bootstrap/requirements/?branch=master)
 
 ## Concept
 The main idea behind this project to create an easily configurable and easy to use django
