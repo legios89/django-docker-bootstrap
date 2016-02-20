@@ -3,8 +3,7 @@
 [![Build Status](https://travis-ci.org/legios89/django-docker-bootstrap.svg?branch=master)](https://travis-ci.org/legios89/django-docker-bootstrap)
 
 ## Concept
-The main idea behind this project to create an easily configurable and easy to use django
-development/production environment for any project.
+A [`cookiecutter`](https://github.com/audreyr/cookiecutter) template for Django/Nodejs(React)/Nginx/Postgres. The main idea behind this project to create an easily configurable and easy to use django development/production environment for any project.
 
 ## Installation
 * Docker requires a 64-bit OS.
