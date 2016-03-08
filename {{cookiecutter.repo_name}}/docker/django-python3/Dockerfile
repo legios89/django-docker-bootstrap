@@ -3,7 +3,6 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
       apt-get install -y --no-install-recommends \
         libpq5 \
         libpython3.4 \
-        python3-pip \
         libpq-dev \
         build-essential \
         python3-dev
