@@ -7,7 +7,7 @@ A [`cookiecutter`](https://github.com/audreyr/cookiecutter) template for Django/
 
 ## Installation
 * Docker requires a 64-bit OS.
-* Install the docker(1.9.1),docker-compose(1.6.0) - https://docs.docker.com/engine/installation/
+* Install the docker(1.10.2),docker-compose(1.6.2) - https://docs.docker.com/engine/installation/
 * Requirements for cookiecutter: ```apt-get install python-dev```
 * Then get cookiecutter: ```pip install Markdown cookiecutter```
 * Finally enter the directory where you want to store your project and enter the following:
@@ -55,7 +55,7 @@ you want to get something from inside the containers like a backup file you just
 3. django-python3
  * The projects can be found under the /src/ directory
  * Installed Apps:
-    * Django: 1.9.2
+    * Django: 1.9.4
     * uWSGI: 2.0.12
     * psycopg2: 2.6.1
     * django-debug-toolbar: 1.4
@@ -63,7 +63,7 @@ you want to get something from inside the containers like a backup file you just
     * django-cleanup: 0.4.2
     * django-extensions: 1.6.1
     * django-compressor: 2.0
-    * django-rosetta: (fork from 0.7.8) [optional]
+    * django-rosetta: 0.7.9 [optional]
     * django-modeltranslation: 0.11rc2 [optional]
  * Commands:
    * shell -start a bash shell ```dc run --rm django shell```
