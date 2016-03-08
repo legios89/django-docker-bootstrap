@@ -2,6 +2,7 @@
 # Core and 3th party packages
 import os
 from random import SystemRandom
+import shutil
 
 
 def generate_secret_key():
@@ -37,14 +38,13 @@ os.rename(PROJECT_DIR + '/.src_gitignore', PROJECT_DIR + '/.gitignore')
 
 {% if cookiecutter.use_translation != 'True' -%}
 # Remove the empty directory if we don't want to use rosetta
-import shutil
 shutil.rmtree(PROJECT_DIR + '/src/core/management/')
 {%- endif %}
 
 {% if cookiecutter.use_react != 'True' -%}
 # Remove the nodejs/rect files & directories
-import shutil
 shutil.rmtree(PROJECT_DIR + '/react/')
 shutil.rmtree(PROJECT_DIR + '/docker/nodejs/')
 shutil.rmtree(PROJECT_DIR + '/src/core/static/react/')
+os.remove(PROJECT_DIR + '/.eslintrc')
 {%- endif %}
