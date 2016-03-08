@@ -17,7 +17,6 @@ docker build -t {{cookiecutter.repo_name}}-nginx "docker/nginx"
 echo "django-python3"
 echo "--------------------"
 docker build \
-  --build-arg "CACHE_DATE=$(date)" \
   -t {{cookiecutter.repo_name}}-django-python3 "docker/django-python3"
 
 {% if cookiecutter.use_react == 'True' -%}

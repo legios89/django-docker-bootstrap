@@ -10,7 +10,7 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
 
 RUN pip3 install \
       uwsgi==2.0.12 \
-      django==1.9.2 \
+      django==1.9.4 \
       psycopg2==2.6.1 \
       django-debug-toolbar==1.4 \
       djangorestframework==3.3.2 \
@@ -26,7 +26,7 @@ WORKDIR /src/
 {% if cookiecutter.use_translation == 'True' -%}
 RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y --no-install-recommends gettext
-RUN pip3 install django-modeltranslation==0.11
-ARG CACHE_DATE=
-RUN pip3 install git+https://github.com/legios89/django-rosetta.git@develop
+RUN pip3 install \
+      django-modeltranslation==0.11 \
+      django-rosetta==0.7.9
 {%- endif %}
