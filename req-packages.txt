@@ -12,4 +12,4 @@ django-cleanup==0.4.2
 django-extensions==1.6.1
 django-compressor==2.0
 django-modeltranslation==0.11
-django-rosetta==0.7.9
+django-rosetta==0.7.10

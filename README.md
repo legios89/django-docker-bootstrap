@@ -39,7 +39,7 @@ A [`cookiecutter`](https://github.com/audreyr/cookiecutter) template for Django/
 * Every image has a container_shared directory linked as a volume, so if you want to put something inside the container, or
 you want to get something from inside the containers like a backup file you just need to copy everything to this directory.
 * Create a bash alias for for the docker-compose by edit the ```.bash_aliases``` file ```alias dc='docker-compose'```
-* Enter the container as root: ```dc run --rm django shell root```
+* Enter the container as root: ```dc run --rm proxy shell root```
 * You can use vim in every container.
 * https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04
 * better prompt: https://github.com/vertisfinance/gitprompt
@@ -66,7 +66,7 @@ you want to get something from inside the containers like a backup file you just
     * django-cleanup: 0.4.2
     * django-extensions: 1.6.1
     * django-compressor: 2.0
-    * django-rosetta: 0.7.9 [optional]
+    * django-rosetta: 0.7.10 [optional]
     * django-modeltranslation: 0.11rc2 [optional]
  * Commands:
    * shell -start a bash shell ```dc run --rm django shell```

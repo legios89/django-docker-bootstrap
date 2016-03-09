@@ -118,10 +118,13 @@ def setuser(username):
     groups = list(set(os.getgrouplist(username, gid)))
 
     def chuser():
-        os.setgroups(groups)
-        os.setgid(gid)
-        os.setuid(uid)
-        os.environ['HOME'] = home
+        try:
+            os.setgroups(groups)
+            os.setgid(gid)
+            os.setuid(uid)
+            os.environ['HOME'] = home
+        except:
+            pass  # Probably the container started as a not root user
     return chuser
 
 

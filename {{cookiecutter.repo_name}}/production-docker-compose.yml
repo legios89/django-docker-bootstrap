@@ -30,6 +30,7 @@ django:
     image: {{cookiecutter.repo_name}}-django-python3
     entrypoint: ['python3', '/config/run.py']
     command: start_uwsgi
+    user: developer
     volumes_from:
         - proxy
     volumes:

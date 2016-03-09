@@ -27,5 +27,5 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y --no-install-recommends gettext
 RUN pip3 install \
       django-modeltranslation==0.11 \
-      django-rosetta==0.7.9
+      django-rosetta==0.7.10
 {%- endif %}
