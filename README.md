@@ -2,6 +2,7 @@
 [![Requirements Status](https://requires.io/github/legios89/django-docker-bootstrap/requirements.svg?branch=master)](https://requires.io/github/legios89/django-docker-bootstrap/requirements/?branch=master)
 [![Build Status](https://travis-ci.org/legios89/django-docker-bootstrap.svg?branch=master)](https://travis-ci.org/legios89/django-docker-bootstrap)
 [![Dependency Status](https://david-dm.org/legios89/django-docker-bootstrap/master.svg?path={{cookiecutter.repo_name}}/react/)](https://david-dm.org/legios89/django-docker-bootstrap/?path={{cookiecutter.repo_name}}/react/)
+![postgres](https://img.shields.io/badge/postgres-9.4-brightgreen.svg)
 
 ## Concept
 A [`cookiecutter`](https://github.com/audreyr/cookiecutter) template for Django/Nodejs(React)/Nginx/Postgres. The main idea behind this project to create an easily configurable and easy to use django development/production environment for any project.
