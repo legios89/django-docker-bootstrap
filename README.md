@@ -62,7 +62,7 @@ you want to get something from inside the containers like a backup file you just
     * uWSGI: 2.0.12
     * psycopg2: 2.6.1
     * django-debug-toolbar: 1.4
-    * djangorestframework: 3.3.2 + optional packages
+    * djangorestframework: 3.3.3 + optional packages
     * django-cleanup: 0.4.2
     * django-extensions: 1.6.1
     * django-compressor: 2.0
@@ -89,5 +89,4 @@ you want to get something from inside the containers like a backup file you just
       * babel-preset-react: 6.5.0,
       * browserify: 13.0.0,
       * watchify: 3.7.0,
-      * react-router: 1.0.3,
-      * history: 1.17.0
+      * react-router: 2.0.1
