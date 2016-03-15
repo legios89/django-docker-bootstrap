@@ -12,9 +12,9 @@ RUN pip3 install \
       django==1.9.4 \
       psycopg2==2.6.1 \
       django-debug-toolbar==1.4 \
-      djangorestframework==3.3.2 \
+      djangorestframework==3.3.3 \
       markdown==2.6.5 \
-      django-filter==0.12.0 \
+      django-filter==0.13.0 \
       django-crispy-forms==1.6.0 \
       django-cleanup==0.4.2 \
       django-extensions==1.6.1 \
