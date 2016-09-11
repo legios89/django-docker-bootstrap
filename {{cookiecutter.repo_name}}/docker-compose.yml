@@ -21,7 +21,7 @@ postgres:
     entrypoint: ['python3', '/config/run.py']
     environment:
         PGDATA: /data/postgres
-    env_file: env.txt
+    env_file: .secret
     ports:
         - "5433:5432"
 
@@ -46,7 +46,7 @@ django:
         PYTHONPATH: /src
         DJANGO_SETTINGS_MODULE: core.settings
         PYTHONUNBUFFERED: "true"
-    env_file: env.txt
+    env_file: .secret
     ports:
         - "80:8000"
 
@@ -66,4 +66,4 @@ nodejs:
         max-size: "5m"
         max-file: "1"
     entrypoint: ['python3', '/config/run.py']
-    env_file: env.txt{% endif -%}
+    env_file: .secret{% endif -%}

@@ -10,7 +10,8 @@ A [`cookiecutter`](https://github.com/audreyr/cookiecutter) template for Django/
 
 ## Installation
 * Docker requires a 64-bit OS.
-* Install the docker(1.10.2),docker-compose(1.6.2) - https://docs.docker.com/engine/installation/
+* Install the docker(1.12.1) - https://docs.docker.com/engine/installation/
+* docker-compose(1.8.0) - ```pip install docker-compose```
 * Requirements for cookiecutter: ```apt-get install python-dev```
 * Then get cookiecutter: ```pip install Markdown cookiecutter```
 * Finally enter the directory where you want to store your project and enter the following:
@@ -58,16 +59,16 @@ you want to get something from inside the containers like a backup file you just
 3. django-python3
  * The projects can be found under the /src/ directory
  * Installed Apps:
-    * Django: 1.9.4
-    * uWSGI: 2.0.12
-    * psycopg2: 2.6.1
-    * django-debug-toolbar: 1.4
-    * djangorestframework: 3.3.3 + optional packages
+    * Django: 1.10.1
+    * uWSGI: 2.0.13.1
+    * psycopg2: 2.6.2
+    * django-debug-toolbar: 1.5
+    * djangorestframework: 3.4.6 + optional packages
     * django-cleanup: 0.4.2
-    * django-extensions: 1.6.1
-    * django-compressor: 2.0
-    * django-rosetta: 0.7.10 [optional]
-    * django-modeltranslation: 0.11rc2 [optional]
+    * django-extensions: 1.7.4
+    * django-compressor: 2.1
+    * django-rosetta: 0.7.12 [optional]
+    * django-modeltranslation: 0.11 [optional]
  * Commands:
    * shell -start a bash shell ```dc run --rm django shell```
 4. nginx
@@ -83,10 +84,10 @@ you want to get something from inside the containers like a backup file you just
       * nodejs: 4.x.x
       * npm: 2.x.x
    * Installed Packages: [automatically installed]
-      * react: 0.14.7,
-      * react-dom: 0.14.7,
-      * babelify: 7.2.0,
-      * babel-preset-react: 6.5.0,
-      * browserify: 13.0.0,
+      * react: 15.3.1,
+      * react-dom: 15.3.1,
+      * babelify: 7.3.0,
+      * babel-preset-react: 6.11.1,
+      * browserify: 13.1.0,
       * watchify: 3.7.0,
-      * react-router: 2.0.1
+      * react-router: 2.8.0

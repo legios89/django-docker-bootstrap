@@ -50,7 +50,7 @@
     //
     "block-scoped-var": 0, // treat var statements as if they were block scoped (off by default). 0: deep destructuring is not compatible https://github.com/eslint/eslint/issues/1863
     "complexity": 0, // specify the maximum cyclomatic complexity allowed in a program (off by default)
-    "consistent-return": 2, // require return statements to either always or never specify values
+    "consistent-return": 0, // require return statements to either always or never specify values
     "curly": 2, // specify curly brace conventions for all control statements
     "default-case": 2, // require default case in switch statements (off by default)
     "dot-notation": 2, // encourages use of dot notation whenever possible
@@ -80,7 +80,7 @@
     "no-octal": 2, // disallow use of octal literals
     "no-octal-escape": 2, // disallow use of octal escape sequences in string literals, such as var foo = "Copyright \251";
     "no-param-reassign": 2, // disallow reassignment of function parameters (off by default)
-    "no-process-env": 2, // disallow use of process.env (off by default)
+    "no-process-env": 0, // disallow use of process.env (off by default)
     "no-proto": 2, // disallow usage of __proto__ property
     "no-redeclare": 2, // disallow declaring the same variable more then once
     "no-return-assign": 2, // disallow use of assignment in return statement
@@ -149,13 +149,10 @@
     "sort-vars": 0, // sort variables within the same declaration block (off by default)
     "key-spacing": [2, {
       "singleLine": {
-        "beforeColon": false,
-        "afterColon": true
+        "mode": "strict"
       },
       "multiLine": {
-        "beforeColon": false,
-        "afterColon": true,
-        "align": "colon"
+        "mode": "strict"
       }
     }],
     "space-before-blocks": [1, "always"], // require or disallow space before blocks (off by default)
@@ -186,7 +183,7 @@
     //
     // "react/jsx-uses-vars": 1
     "react/display-name": 0, // Prevent missing displayName in a React component definition
-    "react/jsx-quotes": [2, "double", "avoid-escape"], // Enforce quote style for JSX attributes
+    "react/jsx-quotes": 0, // Enforce quote style for JSX attributes
     "react/jsx-no-undef": 2, // Disallow undeclared variables in JSX
     "react/jsx-sort-props": 0, // Enforce props alphabetical sorting
     "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused

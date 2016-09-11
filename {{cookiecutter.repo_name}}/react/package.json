@@ -6,12 +6,12 @@
     "watch": "watchify components/router.jsx -v -o /src/core/static/react/app.js -t [ babelify --presets [ react ] ] --debug"
   },
   "dependencies": {
-    "react": "0.14.7",
-    "react-dom": "0.14.7",
-    "babelify": "7.2.0",
-    "babel-preset-react": "6.5.0",
-    "browserify": "13.0.0",
+    "react": "15.3.1",
+    "react-dom": "15.3.1",
+    "babelify": "7.3.0",
+    "babel-preset-react": "6.11.1",
+    "browserify": "13.1.0",
     "watchify": "3.7.0",
-    "react-router": "2.0.1"
+    "react-router": "2.8.0"
   }
 }

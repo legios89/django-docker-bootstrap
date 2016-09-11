@@ -1,7 +1,9 @@
 *.py[oc]
 __pycache__
+react/node_modules/*
 
 env.txt
 container_shared/*
 !container_shared/.init
-react/node_modules/*
+!src/core/static/react/.init
+src/core/static/react/*
