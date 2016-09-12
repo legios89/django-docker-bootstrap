@@ -72,14 +72,14 @@ you want to get something from the containers like a backup file you just need t
     * django-rosetta: 0.7.12 [optional]
     * django-modeltranslation: 0.11 [optional]
  * Commands:
-   * shell -start a bash shell ```dc run --rm django shell```
-   * start_runserver - in development mode this will start django runserver
-   * start_uwsgi - in production mode this will start the uwsgi
+    * shell -start a bash shell ```dc run --rm django shell```
+    * start_runserver - in development mode this will start django runserver
+    * start_uwsgi - in production mode this will start the uwsgi
 3. nginx
  * Commands:
-   * shell -start a bash shell ```dc run --rm nginx shell```
+    * shell -start a bash shell ```dc run --rm nginx shell```
  * Installed Apps:
-   * Nginx: 1.8.1
+    * Nginx: 1.8.1
 4. nodejs [optional]
  * Commands:
       * shell -start a bash shell ```dc run --rm nodejs shell```
