@@ -24,7 +24,3 @@ echo "nodejs"
 echo "--------------------"
 docker build -t {{cookiecutter.repo_name}}-nodejs "docker/nodejs"
 {%- endif %}
-
-echo 'Start the data container'
-echo "--------------------"
-docker-compose --file data-docker-compose.yml up -d

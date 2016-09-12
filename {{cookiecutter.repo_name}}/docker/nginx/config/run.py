@@ -8,6 +8,7 @@ from runutils import runbash, run_daemon, ensure_dir
 
 @click.group()
 def run():
+    ensure_dir('/data/logs/', owner='developer', group='developer')
     ensure_dir('/data/logs/nginx/', owner='developer', group='developer')
 
 

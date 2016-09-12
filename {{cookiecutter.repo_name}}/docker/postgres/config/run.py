@@ -133,6 +133,7 @@ def _restore(backupname):
 # INIT: WILL RUN BEFORE ANY COMMAND AND START  #
 ################################################
 def init(stopper=None):
+    ensure_dir('/data/logs/', owner='developer', group='developer')
     ensure_dir(os.path.split(PGDATA)[0], owner='postgres', group='postgres')
     ensure_dir(SOCKET_DIR, owner='postgres', group='postgres')
     ensure_dir(BACKUP_DIR, owner='postgres', group='postgres')

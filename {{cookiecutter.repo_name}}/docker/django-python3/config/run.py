@@ -44,6 +44,7 @@ def generate_makemessages_command(domain):
 
 # INIT: WILL RUN BEFORE ANY COMMAND AND START  #
 def init(stopper):
+    ensure_dir('/data/logs/', owner='developer', group='developer')
     ensure_dir('/data/logs/django', owner='developer', group='developer')
     ensure_dir('/data/static', owner='developer', group='developer')
     {% if cookiecutter.use_translation == 'True' -%}
@@ -58,7 +59,6 @@ def init(stopper):
             cmd = ['django-admin', 'collectstatic', '--noinput']
             {% endif -%}
             run_cmd(cmd, user='developer')
-            run_cmd(['django-admin', 'migrate'], user='developer')
 
         # Create db cache
         if os.path.isfile('/data/.init') is False:
