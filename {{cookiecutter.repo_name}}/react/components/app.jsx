@@ -1,5 +1,6 @@
-/* global gettext, $ */
+/* global gettext */
 var React = require('react');
+var request = require('request-json');
 
 var App = React.createClass({
   propTypes: {
@@ -14,8 +15,9 @@ var App = React.createClass({
   componentWillMount: function () {
     var self = this;
     var url = {% if cookiecutter.use_translation == 'True' %}'/' + this.props.route.language + {% endif %}'/api/urls/';
-    $.get(url, function (response) {
-      self.setState({urls: response});
+    var client = request.createClient(window.location.origin + '/');
+    client.get(url, function (err, res, body) {
+      self.setState({urls: body});
     });
   },
 

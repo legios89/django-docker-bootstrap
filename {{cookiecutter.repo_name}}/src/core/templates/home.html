@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% trans "Home Page" %}</title>
     {% compress css %}
-      <link href="{% static "components/bootstrap-3.3.7-dist/css/bootstrap.min.css" %}" rel="stylesheet">
       <link href="{% static "css/cover.css" %}" rel="stylesheet">
     {% endcompress %}
   </head>
@@ -44,8 +43,7 @@
     </div>{% endraw %}{% endif %}
     <script src="{% if cookiecutter.use_translation == 'True' %}{% raw %}/{{LANGUAGE_CODE}}{% endraw %}{% endif %}{% raw %}/jsi18n/"></script>
     {% compress js %}
-      <script src="{% static "components/jquery-1.12.4/jquery-1.12.4.min.js" %}"></script>
-      <script src="{% static "components/bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>{% endraw %}
+      {% endraw %}
       {% if cookiecutter.use_react == 'True' -%}{% raw %}<script src="{% static "react/app.js" %}"></script>{% endraw %}{% endif -%}{% raw %}
     {% endcompress %}
   </body>

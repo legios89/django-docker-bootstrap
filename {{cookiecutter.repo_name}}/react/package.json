@@ -12,6 +12,8 @@
     "babel-preset-react": "6.11.1",
     "browserify": "13.1.0",
     "watchify": "3.7.0",
-    "react-router": "2.8.0"
+    "react-router": "2.8.0",
+    "request": "2.75.0",
+    "request-json": "0.6.1"
   }
 }

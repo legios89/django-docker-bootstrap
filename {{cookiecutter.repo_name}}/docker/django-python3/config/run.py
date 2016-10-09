@@ -6,8 +6,6 @@ import click
 import psycopg2
 import os
 from django.conf import settings
-import zipfile
-import urllib.request
 
 # Utils Imports
 from runutils import run_daemon, runbash, ensure_dir, getvar, run_cmd
@@ -67,22 +65,6 @@ def init(stopper):
             run_cmd(['django-admin', 'migrate'], user='developer')
             run_cmd(['django-admin', 'createcachetable', '-v', '0'],
                     user='developer')
-
-            # Download bootstrap-3.3.7
-            file_name = 'bootstrap-3.3.7-dist.zip'
-            url = 'https://github.com/twbs/bootstrap/releases/download/v3.3.7/'
-            url += file_name
-            outfile = '/tmp/' + file_name
-            urllib.request.urlretrieve(url, outfile)
-
-            with zipfile.ZipFile(outfile, "r") as zip_ref:
-                zip_ref.extractall("/src/core/static/components/")
-
-            # Download jquery-1.12.4
-            url = 'https://code.jquery.com/jquery-1.12.4.min.js'
-            outdir = '/src/core/static/components/jquery-1.12.4'
-            ensure_dir(outdir, owner='developer', group='developer')
-            urllib.request.urlretrieve(url, outdir + '/jquery-1.12.4.min.js')
 
             with open("/data/.init", "a+") as f:
                 f.write('')
