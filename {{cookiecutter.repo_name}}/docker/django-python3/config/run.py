@@ -20,8 +20,9 @@ def waitfordb(stopper):
         try:
             psycopg2.connect(host='postgres', port=5432, database="django",
                              user="postgres", password=getvar('DB_PASSWORD'))
-        except:
+        except Exception as e:
             click.echo('could not connect yet')
+            click.echo(e)
         else:
             return
 
@@ -31,7 +32,9 @@ def waitfordb(stopper):
             time.sleep(tick)
 
 
-{% if cookiecutter.use_translation == 'True' -%}
+{%- if cookiecutter.use_translation == 'True' %}
+
+
 def generate_makemessages_command(domain):
     command = ['django-admin', 'makemessages', '-d', domain]
 
@@ -50,7 +53,6 @@ def init(stopper):
     {% if cookiecutter.use_translation == 'True' -%}
     ensure_dir('/src/locale', owner='developer', group='developer')
     {%- endif %}
-
     if not stopper.stopped:
         if settings.DEBUG is False:
             {%- if cookiecutter.use_react == 'True' %}
@@ -67,12 +69,10 @@ def init(stopper):
                     user='developer')
 
             with open("/data/.init", "a+") as f:
-                f.write('')
+                f.write(''){% if cookiecutter.use_translation == 'True' %}
 
-        {% if cookiecutter.use_translation == 'True' -%}
         run_cmd(generate_makemessages_command('django'), user='developer')
-        run_cmd(generate_makemessages_command('djangojs'), user='developer')
-        {%- endif %}
+        run_cmd(generate_makemessages_command('djangojs'), user='developer'){% endif %}
 
 
 @click.group()
