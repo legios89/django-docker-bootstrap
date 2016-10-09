@@ -41,11 +41,11 @@
         </div>
       </div>
     </div>{% endraw %}{% endif %}
-    <script src="{% if cookiecutter.use_translation == 'True' %}{% raw %}/{{LANGUAGE_CODE}}{% endraw %}{% endif %}{% raw %}/jsi18n/"></script>
-    {% compress js %}
-      {% endraw %}
-      {% if cookiecutter.use_react == 'True' -%}{% raw %}<script src="{% static "react/app.js" %}"></script>{% endraw %}{% endif -%}{% raw %}
+    <script src="{% if cookiecutter.use_translation == 'True' %}{% raw %}/{{LANGUAGE_CODE}}{% endraw %}{% endif %}/jsi18n/"></script>
+    {% if cookiecutter.use_react == 'True' -%}{% raw %}
+      {% compress js %}
+      <script src="{% static "react/app.js" %}"></script>
     {% endcompress %}
+    {% endraw %}{% endif -%}
   </body>
 </html>
-{% endraw %}

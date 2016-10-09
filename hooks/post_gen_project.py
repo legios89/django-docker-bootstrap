@@ -39,6 +39,8 @@ os.rename(PROJECT_DIR + '/.src_gitignore', PROJECT_DIR + '/.gitignore')
 {% if cookiecutter.use_translation != 'True' -%}
 # Remove the empty directory if we don't want to use rosetta
 shutil.rmtree(PROJECT_DIR + '/src/core/management/')
+shutil.rmtree(PROJECT_DIR + '/src/core/templates/admin/')
+shutil.rmtree(PROJECT_DIR + '/src/core/templates/rosetta/')
 {%- endif %}
 
 {% if cookiecutter.use_react != 'True' -%}
