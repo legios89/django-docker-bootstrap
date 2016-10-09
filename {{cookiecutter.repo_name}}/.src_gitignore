@@ -1,9 +1,12 @@
 *.py[oc]
 __pycache__
+{% if cookiecutter.use_react == 'True' -%}
 react/node_modules/*
-
+{%- endif %}
 env.txt
 container_shared/*
 !container_shared/.init
+{% if cookiecutter.use_react == 'True' -%}
 !src/core/static/react/.init
 src/core/static/react/*
+{%- endif -%}
