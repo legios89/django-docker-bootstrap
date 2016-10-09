@@ -8,13 +8,13 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
         python3-dev
 
 RUN pip3 install \
-      uwsgi==2.0.13.1 \
-      django==1.10.1 \
+      uwsgi==2.0.14 \
+      django==1.10.2 \
       psycopg2==2.6.2 \
-      django-debug-toolbar==1.5 \
-      djangorestframework==3.4.6 \
-      markdown==2.6.6 \
-      django-filter==0.14.0 \
+      django-debug-toolbar==1.6 \
+      djangorestframework==3.4.7 \
+      markdown==2.6.7 \
+      django-filter==0.15.2 \
       django-crispy-forms==1.6.0 \
       django-cleanup==0.4.2 \
       django-extensions==1.7.4 \
@@ -26,6 +26,6 @@ WORKDIR /src/
 RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y --no-install-recommends gettext
 RUN pip3 install \
-      django-modeltranslation==0.11 \
+      django-modeltranslation==0.12 \
       django-rosetta==0.7.12
 {%- endif %}

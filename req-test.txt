@@ -1,4 +1,4 @@
 cookiecutter==1.4.0
-pytest==3.0.2
+pytest==3.0.3
 pytest-cookies==0.2.0
 pytest-cov==2.3.1
